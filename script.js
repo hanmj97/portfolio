@@ -13,3 +13,38 @@ themePicker.addEventListener('change',()=>{
   document.querySelector('meta[name="theme-color"]').setAttribute('content',getComputedStyle(document.body).backgroundColor);
   try{localStorage.setItem('hanminjae-theme',theme)}catch(e){}
 });
+
+
+// Portfolio visit counter (Cloudflare Worker + D1).
+// Records one visit per browser tab session and Korean calendar day.
+// Stores only a random session ID: no name, email, or IP is sent by this code.
+(function recordPortfolioVisit() {
+  const endpoint = 'https://portfolio-counter.hanmj97.workers.dev/visit';
+  try {
+    if (!window.crypto || typeof window.crypto.randomUUID !== 'function') return;
+    const storageKey = 'hanminjae-portfolio-visit-session';
+    let visitId = null;
+    try {
+      visitId = sessionStorage.getItem(storageKey);
+      if (!visitId) {
+        visitId = window.crypto.randomUUID();
+        sessionStorage.setItem(storageKey, visitId);
+      }
+    } catch (_) {
+      // Storage may be disabled; count the visit with a fresh identifier.
+      visitId = window.crypto.randomUUID();
+    }
+    fetch(endpoint, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ visitId }),
+      keepalive: true,
+    }).catch(() => {
+      // Analytics must never prevent portfolio content from loading.
+    });
+  } catch (_) {
+    // Continue showing the portfolio even when visit counting is unavailable.
+  }
+})();
