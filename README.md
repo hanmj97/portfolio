@@ -1,7 +1,7 @@
 # 한민재 | Technical Portfolio — Minimal White + Dashboard
 
 ## 확인 방법
-압축을 해제한 뒤 `index.html` 파일을 Chrome / Edge에서 열어주세요. 별도 설치 불필요.
+`index.html` 파일을 Chrome / Edge에서 열어주세요. 별도 설치 불필요.
 
 ## 배포
 GitHub에 새 공개 저장소를 만들고 이 폴더의 `index.html`, `style.css`, `script.js`를 루트에 올립니다. Settings → Pages → Deploy from a branch → `main` / `(root)` 선택 후 공개 주소 확인.
