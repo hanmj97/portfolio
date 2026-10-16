@@ -123,7 +123,7 @@ portfolio/
 관리자 인증용 \`ADMIN_TOKEN\` Secret은 GitHub에 저장하지 않습니다. 기존 방문 기록은 보존되며 새 클릭/유입/접속 환경 정보는 V4 도입 이후부터 수집됩니다.
 
 
-### 실시간 Discord 알림 (V4.1)
+### 실시간 Discord 알림 (방문 분석 시스템 V4.1)
 
 방문 기록이 Cloudflare D1에 **새로 삽입된 경우에만** Cloudflare Worker가 Discord Webhook으로 알림을 전송합니다. 같은 방문 세션의 새로고침은 중복 알림이 발생하지 않습니다.
 
