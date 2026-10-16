@@ -103,7 +103,7 @@ portfolio/
 - [상세 설계 문서](./analytics/README.md), [SQL 스키마](./analytics/schema.sql) 저장
 
 
-## 방문 분석 V4 업데이트 (2026.10)
+## 방문 분석 업데이트 (2026.10)
 
 기존 Google Analytics 4 및 Cloudflare Web Analytics를 유지하면서 **Cloudflare Worker + D1 관리자 대시보드 V4**에 프론트엔드 이벤트 수집을 연동했습니다.
 
