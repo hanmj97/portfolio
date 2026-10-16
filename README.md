@@ -101,3 +101,23 @@ portfolio/
 - D1 `portfolio_visits` 테이블 및 날짜 인덱스 구성
 - Worker 관리자 인증 및 오늘/누적 방문 집계 화면 연결
 - [상세 설계 문서](./analytics/README.md), [SQL 스키마](./analytics/schema.sql) 저장
+
+
+## 방문 분석 V4 업데이트 (2026.10)
+
+기존 Google Analytics 4 및 Cloudflare Web Analytics를 유지하면서 **Cloudflare Worker + D1 관리자 대시보드 V4**에 프론트엔드 이벤트 수집을 연동했습니다.
+
+- 일별·주별·월별 방문 추이, 기존 지역 지도 및 방문 시각
+- **문서·프로젝트 링크 클릭 집계** (\`/event\` API, 실제 문서 열람 여부는 알 수 없음)
+- **유입 도메인** 구분 (채용 사이트/검색/직접 접속/외부 링크)
+- **PC·모바일 및 브라우저** 집계
+- **최근 30일 기준 신규·재방문 브라우저 세션 추정**
+- **내 브라우저 D1 집계 제외/재개** (GA4 및 Cloudflare 기본 분석에는 별도 적용)
+- **관리자 인증 후 CSV 집계 다운로드**
+
+구성: \`script.js\` → Worker \`/visit\`, \`/event\` → D1 \`portfolio_visits\`, \`portfolio_events\` → Worker 관리자 대시보드.
+
+- [상세 아키텍처와 V4 운영 주의사항](./analytics/README.md)
+- [V4 D1 마이그레이션 SQL](./analytics/migrate-v3-to-v4.sql)
+
+관리자 인증용 \`ADMIN_TOKEN\` Secret은 GitHub에 저장하지 않습니다. 기존 방문 기록은 보존되며 새 클릭/유입/접속 환경 정보는 V4 도입 이후부터 수집됩니다.
