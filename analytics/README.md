@@ -63,3 +63,20 @@ GitHub Pages 기반 정적 포트폴리오에 분석 및 방문 카운터를 추
 5. Google Analytics 실시간 보고서 및 Cloudflare Web Analytics 대시보드 확인
 
 > 위 문서는 구현 기록입니다. 운영 중인 Worker 소스는 Cloudflare에서 별도로 관리하며, 이 저장소에는 공개해도 되는 설정 및 데이터베이스 스키마만 기록했습니다.
+
+
+## V4 확장: 유입·클릭·기기·재방문 분석 (2026-10)
+
+GitHub Pages의 \`script.js\`를 V4 Worker API에 연동했습니다.
+
+- **방문 추이**: 관리자 화면에서 일/주/월 단위 및 기간별 집계 조회
+- **클릭 이벤트**: Notion, 이력서·포트폴리오·경력기술서 PDF, DataOps/Blackjack GitHub, 데모 등 링크 클릭 시 \`POST /event\` (파일 열람/다운로드 완료 여부와는 다름)
+- **유입 분석**: 브라우저에서 보내는 \`document.referrer\`의 **도메인만** 분류하여 \`POST /visit\`에 전달. 경로·검색어·쿼리는 저장하지 않음
+- **접속 환경**: Worker가 User-Agent로부터 기기 유형과 브라우저 이름만 분류하여 저장. 원문 User-Agent는 D1 테이블에 저장하지 않음
+- **내 방문 제외**: 관리자 화면의 \`?analytics_optout=1\` 링크로 해당 브라우저의 **Worker/D1 집계만** 제외하며 \`?analytics_optout=0\`으로 다시 포함. GA4/Cloudflare Web Analytics에는 자동 반영되지 않음
+- **신규·재방문 추정**: 브라우저 \`localStorage\`에 최근 접속 표시를 보관하여 30일 내 재방문 세션을 구분. 이는 고유 사용자 수가 아님
+- **CSV**: Worker 관리자 인증 후 D1 집계 데이터 CSV 다운로드 (최대 최근 90일)
+
+**[V4 D1 마이그레이션 SQL](./migrate-v3-to-v4.sql)** — 기존 테이블과 데이터를 유지하면서 \`portfolio_visits\`에 컬럼을 추가하고 \`portfolio_events\` 테이블을 생성합니다. 이미 적용한 SQL은 다시 실행하지 마세요. 운영 중 Worker V4 소스는 Cloudflare 대시보드에서 별도로 관리됩니다.
+
+새 항목은 프론트엔드 V4 배포 이후부터 수집되므로 이전 기록에 해당 항목이 비어 있는 것은 정상입니다. 브라우저별 추적 차단 설정과 위치 추정 오차로 집계가 실제 접속과 다를 수 있습니다. 개인정보 처리 고지 및 분석 도구 설정은 공개 운영 환경에 맞춰 별도 검토가 필요합니다.
