@@ -8,7 +8,7 @@ MSSQL·MySQL 라이브 서비스 운영, 성능 튜닝, 데이터 정합성 관�
 
 ## 프로젝트 소개
 
-- **경력** — 위메이드(DBA / 데이터 운영), 로젠소프트(Web Developer)
+- **경력** — 위메이드(DBA / 데이터 운영), 로젠소프트(Developer)
 - **데이터 분야** — 라이브 DB 성능 튜닝, 데이터 보정·정합성 검증, [DataOps Pipeline](https://github.com/hanmj97/DataOpsPipeline)
 - **개발 분야** — [Blackjack Web Service](https://github.com/hanmj97/Black-jack-React)
 - **문서 연결** — Notion 이력서, 이력서 PDF, 포트폴리오 PDF, 경력기술서 PDF
