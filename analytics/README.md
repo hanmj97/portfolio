@@ -77,6 +77,22 @@ GitHub Pages의 \`script.js\`를 V4 Worker API에 연동했습니다.
 - **신규·재방문 추정**: 브라우저 \`localStorage\`에 최근 접속 표시를 보관하여 30일 내 재방문 세션을 구분. 이는 고유 사용자 수가 아님
 - **CSV**: Worker 관리자 인증 후 D1 집계 데이터 CSV 다운로드 (최대 최근 90일)
 
-**[V4 D1 마이그레이션 SQL](./migrate-v3-to-v4.sql)** — 기존 테이블과 데이터를 유지하면서 \`portfolio_visits\`에 컬럼을 추가하고 \`portfolio_events\` 테이블을 생성합니다. 이미 적용한 SQL은 다시 실행하지 마세요. 운영 중 Worker V4 소스는 Cloudflare 대시보드에서 별도로 관리됩니다.
+**[V4 D1 마이그레이션 SQL](./migrate-v3-to-v4.sql)** — 기존 테이블과 데이터를 유지하면서 \`portfolio_visits\`에 컬럼을 추가하고 \`portfolio_events\` 테이블을 생성합니다. 이미 적용한 SQL은 다시 실행하지 마세요. Worker V4.1 전체 소스는 이제 GitHub의 [worker.js](./worker.js)에서 함께 관리하며, 실제 운영 배포는 Cloudflare에서 수행합니다.
 
 새 항목은 프론트엔드 V4 배포 이후부터 수집되므로 이전 기록에 해당 항목이 비어 있는 것은 정상입니다. 브라우저별 추적 차단 설정과 위치 추정 오차로 집계가 실제 접속과 다를 수 있습니다. 개인정보 처리 고지 및 분석 도구 설정은 공개 운영 환경에 맞춰 별도 검토가 필요합니다.
+
+
+## V4.1 — Discord 웹훅을 통한 새 방문 즉시 알림
+
+- **Worker 소스**: [worker.js](./worker.js)
+- **설정 및 모바일 푸시 점검**: [discord-notifications.md](./discord-notifications.md)
+- 새 방문이 D1 `portfolio_visits`에 삽입된 경우에만 Discord Webhook에 알림을 보냄
+- 같은 `visit_id` 중복 시 `INSERT OR IGNORE`로 차단하고 알림도 생략
+- `ctx.waitUntil`로 D1 저장 후 비동기 알림 호출. 네트워크/전송 제한으로 알림이 누락될 수 있으므로 확정적인 발송 보장 방식은 아님
+- 관리자 인증이 필요한 `POST /admin/test-notification`으로 수동 테스트 가능 (방문 기록 미생성)
+- 알림 메시지: 한국 시간·IP 기반 추정 도시/광역지역/국가·당일 방문 횟수. 원본 IP/정확한 GPS/신원 정보는 수집·발송하지 않음
+- **Cloudflare Secret**: `DISCORD_WEBHOOK_URL`, `ADMIN_TOKEN` 및 D1 `DB` 바인딩 필요. GitHub에는 실제 Secret 값 금지
+- 기존 V4 D1 마이그레이션 이외 **추가 D1 변경 없음**, GitHub Pages의 `script.js` 변경 없음
+- **운영 확인**: Discord 채널 메시지와 모바일 푸시 정상 수신. PC에서 Discord가 실행 중이면 모바일 푸시가 억제될 수 있음
+
+V4.1의 전체 Worker 소스를 이제 이 공개 GitHub 저장소에서 관리합니다. 실제 운영 배포는 Cloudflare Workers 관리 화면에서 이루어지며 GitHub 코드 업데이트만으로 자동 배포되지는 않습니다.
