@@ -121,3 +121,19 @@ portfolio/
 - [V4 D1 마이그레이션 SQL](./analytics/migrate-v3-to-v4.sql)
 
 관리자 인증용 \`ADMIN_TOKEN\` Secret은 GitHub에 저장하지 않습니다. 기존 방문 기록은 보존되며 새 클릭/유입/접속 환경 정보는 V4 도입 이후부터 수집됩니다.
+
+
+### 실시간 Discord 알림 (V4.1)
+
+방문 기록이 Cloudflare D1에 **새로 삽입된 경우에만** Cloudflare Worker가 Discord Webhook으로 알림을 전송합니다. 같은 방문 세션의 새로고침은 중복 알림이 발생하지 않습니다.
+
+- **알림 내용**: 방문 시간(KST), IP 기반 추정 지역(도시·광역지역·국가), 오늘 누적 방문 횟수
+- **알림 시점**: `INSERT OR IGNORE`로 새 방문 저장 성공 시 `ctx.waitUntil`로 비동기 발송
+- **관리자 테스트**: `POST /admin/test-notification` (Bearer 인증, 방문 횟수 증가 없음)
+- **보안**: `DISCORD_WEBHOOK_URL` 및 `ADMIN_TOKEN`은 Cloudflare Secret에만 보관
+- **예외 처리**: 알림 전송 실패와 무관하게 D1 방문 기록은 보존. Discord 네트워크 실패 시 알림 누락 가능
+- **모바일 푸시**: PC Discord 사용 중에는 모바일 알림이 억제될 수 있어 PC 앱 종료 후 확인
+
+[Worker V4.1 전체 소스](./analytics/worker.js) · [Discord 설치·알림 문제 해결](./analytics/discord-notifications.md) · [방문 분석 기술 문서](./analytics/README.md)
+
+Discord 알림은 이름·소속 등 방문자의 신원을 알아내는 기능이 아니며, 위치 정보도 IP 기반 추정치입니다.
