@@ -28,5 +28,5 @@ body{background:var(--page);color:var(--ink);transition:background-color .2s,col
 .signalbridge-proof{display:flex;gap:6px;flex-wrap:wrap;margin:1px 0 16px}
 .signalbridge-proof span{background:var(--accent-soft);color:var(--accent);font-size:10px;font-weight:700;padding:6px 9px;border-radius:3px}
 .signalbridge-project .project-footer{align-items:flex-start;flex-wrap:wrap}
-.signalbridge-project .project-footer .links{flex-wrap:wrap;gap:10px 16px}
+.signalbridge-project .project-footer .links{margin-left:auto;justify-content:flex-end;max-width:100%;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:520px){.signalbridge-project .project-footer{flex-direction:column;align-items:flex-start}.signalbridge-project .project-footer .links{gap:10px 15px}.signalbridge-preview figcaption{font-size:9px}}
