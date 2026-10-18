@@ -10,6 +10,7 @@ MSSQL·MySQL 라이브 서비스 운영, 성능 튜닝, 데이터 정합성 관�
 
 - **경력** — 위메이드(DBA / 데이터 운영), 로젠소프트(Developer)
 - **데이터 분야** — 라이브 DB 성능 튜닝, 데이터 보정·정합성 검증, [DataOps Pipeline](https://github.com/hanmj97/DataOpsPipeline)
+- **통합 데이터 서비스** — [SignalBridge](https://github.com/hanmj97/SignalBridge): 용인시 공식 채용정보 수집·PostgreSQL 변경 이력·Airflow 자동화·React/Spring Boot 웹·GitHub 릴리스 알림 (로컬 MVP)
 - **개발 분야** — [Blackjack Web Service](https://github.com/hanmj97/Black-jack-React)
 - **문서 연결** — Notion 이력서, 이력서 PDF, 포트폴리오 PDF, 경력기술서 PDF
 - **UI** — 반응형 레이아웃, 프로젝트 필터(전체/데이터/개발), 5가지 컬러 테마 및 선택 테마 브라우저 저장
@@ -137,3 +138,10 @@ portfolio/
 [Worker V4.1 전체 소스](./analytics/worker.js) · [Discord 설치·알림 문제 해결](./analytics/discord-notifications.md) · [방문 분석 기술 문서](./analytics/README.md)
 
 Discord 알림은 이름·소속 등 방문자의 신원을 알아내는 기능이 아니며, 위치 정보도 IP 기반 추정치입니다.
+
+## SignalBridge 프로젝트 카드 추가 (2026.10)
+
+- 프로젝트 필터: 전체 5개 / 데이터 4개 / 개발 1개. 기존 네 프로젝트와 필터 기능은 유지합니다.
+- 공식 용인시 채용정보 실데이터 화면을 연결하고 [GitHub](https://github.com/hanmj97/SignalBridge) · [시스템 아키텍처](https://github.com/hanmj97/SignalBridge/blob/feature/youth-policy-platform/docs/architecture.md) · [v0.2.0 릴리스](https://github.com/hanmj97/SignalBridge/releases/tag/v0.2.0) 링크를 추가했습니다.
+- 이미지 프리뷰는 공개 SignalBridge 저장소의 WebP 파일을 직접 참조하므로 해당 브랜치와 파일 경로가 유지되어야 합니다.
+- GitHub Pages/GA4/Cloudflare Web Analytics/Worker+D1·Discord 방문 알림 구현 코드는 변경하지 않았습니다. V4 Worker의 허용된 클릭 이벤트 유형은 그대로이므로 **새 SignalBridge 링크 클릭은 아직 자체 D1 이벤트로 집계하지 않습니다**. 이를 집계하려면 추후 Worker의 클릭 대상 허용 목록과 배포를 별도로 업데이트해야 합니다.
