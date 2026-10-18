@@ -18,3 +18,15 @@ body{background:var(--page);color:var(--ink);transition:background-color .2s,col
 /* V4: all technology tags are equally emphasized across all five themes */
 #stack .chipset span,#stack .chipset .highlight{background:var(--accent-soft);border:1px solid var(--line);color:var(--accent)!important;font-weight:700;transition:transform .18s,background-color .18s}
 #stack .chipset span:hover{transform:translateY(-2px)}
+
+
+/* SignalBridge project showcase: reuse palette variables across all five themes. */
+.signalbridge-project h3 .signalbridge-subtitle{display:block;margin-top:5px;font-size:13px;font-weight:600;letter-spacing:0;color:var(--muted)}
+.signalbridge-project .signalbridge-preview{position:relative;overflow:hidden;margin:9px 0 12px;border:1px solid var(--line);border-radius:7px;background:var(--subtle)}
+.signalbridge-preview img{display:block;width:100%;height:auto;aspect-ratio:2.12/1;object-fit:cover;object-position:top center}
+.signalbridge-preview figcaption{position:absolute;bottom:0;left:0;right:0;padding:15px 12px 9px;background:linear-gradient(transparent,rgba(15,28,48,.76));color:white;font-size:10px;font-weight:700}
+.signalbridge-proof{display:flex;gap:6px;flex-wrap:wrap;margin:1px 0 16px}
+.signalbridge-proof span{background:var(--accent-soft);color:var(--accent);font-size:10px;font-weight:700;padding:6px 9px;border-radius:3px}
+.signalbridge-project .project-footer{align-items:flex-start;flex-wrap:wrap}
+.signalbridge-project .project-footer .links{flex-wrap:wrap;gap:10px 16px}
+@media(max-width:520px){.signalbridge-project .project-footer{flex-direction:column;align-items:flex-start}.signalbridge-project .project-footer .links{gap:10px 15px}.signalbridge-preview figcaption{font-size:9px}}
