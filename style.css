@@ -48,4 +48,4 @@ body{background:var(--page);color:var(--ink);transition:background-color .2s,col
 .dbpulse-project .project-footer{align-items:flex-start;flex-wrap:wrap}
 .dbpulse-project .dbpulse-links{margin-left:auto;justify-content:flex-end}
 .dbpulse-project .case-link.muted{color:var(--muted);cursor:default}
-@media(max-width:520px){.dbpulse-modules{grid-template-columns:1fr}.dbpulse-modules>div{padding:10px}.dbpulse-project .project-footer{flex-direction:column}.dbpulse-project .dbpulse-links{margin-left:0}}
+@media(max-width:520px){.dbpulse-modules{grid-template-columns:1fr}.dbpulse-modules>div{padding:10px}.dbpulse-project .project-footer{flex-direction:column}.dbpulse-project .dbpulse-links{margin-left:auto}}
