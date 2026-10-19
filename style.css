@@ -31,21 +31,42 @@ body{background:var(--page);color:var(--ink);transition:background-color .2s,col
 .signalbridge-project .project-footer .links{margin-left:auto;justify-content:flex-end;max-width:100%;flex-wrap:wrap;gap:10px 16px}
 @media(max-width:520px){.signalbridge-project .project-footer{flex-direction:column;align-items:flex-start}.signalbridge-project .project-footer .links{gap:10px 15px}.signalbridge-preview figcaption{font-size:9px}}
 
-/* DBPulse: planned capabilities are labeled as such. */
-.dbpulse-project h3 .dbpulse-subtitle{display:block;margin-top:5px;font-size:13px;font-weight:600;color:var(--muted)}
-.dbpulse-preview{border:1px solid var(--line);border-radius:7px;background:var(--subtle);padding:17px;margin:14px 0}
-.dbpulse-preview-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;color:var(--muted);font-weight:800;font-size:9px;letter-spacing:.09em}
-.dbpulse-preview-head strong{color:var(--accent);font-size:9px;letter-spacing:.06em}
-.dbpulse-modules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.dbpulse-modules>div{border:1px solid var(--line);border-radius:5px;background:var(--card);padding:12px 10px;min-width:0}
-.dbpulse-modules small,.dbpulse-modules b,.dbpulse-modules span{display:block;overflow-wrap:anywhere}
-.dbpulse-modules small{color:var(--accent);font-size:9px;font-weight:800}
-.dbpulse-modules b{color:var(--ink);font-size:12px;margin:9px 0}
-.dbpulse-modules span{color:var(--muted);font-size:10px}
-.dbpulse-progress{display:flex;flex-wrap:wrap;align-items:center;gap:5px 9px;margin:0 0 17px;font-size:10px;color:var(--muted)}
-.dbpulse-progress strong{color:var(--accent);font-size:10px}
-.dbpulse-progress>span{flex-basis:100%;font-size:10px}
+
+/* DBPulse v2: compact, theme-aware portfolio product preview. */
+.dbpulse-project h3{margin-bottom:4px}
+.dbpulse-project .dbpulse-subtitle{display:block;color:var(--muted);font-size:13px;font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.dbpulse-project p.dbpulse-summary{min-height:0;margin:14px 0 16px;font-size:12px;line-height:1.8;color:var(--muted)}
+.dbpulse-preview{margin:0 0 14px;padding:17px;background:var(--subtle);border:1px solid var(--line);border-radius:7px}
+.dbpulse-visual-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}
+.dbpulse-visual-top>span:first-child{font-size:9px;font-weight:800;letter-spacing:.09em;color:var(--muted)}
+.dbpulse-visual-badge{flex-shrink:0;background:var(--accent-soft);color:var(--accent);border:1px solid var(--line);border-radius:12px;padding:5px 9px;font-size:9px;letter-spacing:.05em;font-weight:800}
+.dbpulse-architecture{display:flex;align-items:center;gap:7px}
+.dbpulse-arch-node{min-width:0;flex:1;padding:12px 9px;background:var(--card);border:1px solid var(--line);border-radius:5px}
+.dbpulse-arch-node small{display:block;font-size:8px;font-weight:800;letter-spacing:.06em;color:var(--accent)}
+.dbpulse-arch-node strong{display:block;font-size:12px;font-weight:800;margin-top:7px;color:var(--ink);overflow-wrap:anywhere}
+.dbpulse-arch-arrow{font-size:17px;font-weight:700;color:var(--accent);flex-shrink:0}
+.dbpulse-capabilities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px;padding-top:13px;border-top:1px solid var(--line)}
+.dbpulse-capabilities>div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.dbpulse-capability-num{font-size:9px;color:var(--accent);font-weight:800}
+.dbpulse-capabilities strong{font-size:11px;line-height:1.45;color:var(--ink);font-weight:750;word-break:keep-all}
+.dbpulse-capabilities small{font-size:10px;line-height:1.45;color:var(--muted);word-break:keep-all}
+.dbpulse-build-status{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:17px;font-size:11px;color:var(--muted)}
+.dbpulse-build-status strong{font-size:11px;color:var(--accent)}
+.dbpulse-build-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0}
 .dbpulse-project .project-footer{align-items:flex-start;flex-wrap:wrap}
-.dbpulse-project .dbpulse-links{margin-left:auto;justify-content:flex-end}
+.dbpulse-project .dbpulse-links{margin-left:auto;justify-content:flex-end;white-space:nowrap}
 .dbpulse-project .case-link.muted{color:var(--muted);cursor:default}
-@media(max-width:520px){.dbpulse-modules{grid-template-columns:1fr}.dbpulse-modules>div{padding:10px}.dbpulse-project .project-footer{flex-direction:column}.dbpulse-project .dbpulse-links{margin-left:auto}}
+@media(max-width:520px){
+  .dbpulse-preview{padding:13px}
+  .dbpulse-arch-node{padding:10px 6px}
+  .dbpulse-arch-node strong{font-size:10px}
+  .dbpulse-architecture{gap:4px}
+  .dbpulse-capabilities{gap:7px}
+  .dbpulse-capabilities strong{font-size:10px}
+  .dbpulse-project .project-footer{flex-direction:column}
+  .dbpulse-project .dbpulse-links{margin-left:auto}
+}
+/* Keep the project-section intro in one line without clipping small screens. */
+#projects .section-head p{max-width:none;flex-shrink:0;white-space:nowrap}
+@media(max-width:720px){#projects .section-head p{font-size:clamp(8px,2.6vw,13px);letter-spacing:-.035em}}
+@media(max-width:380px){#projects .section-head p{font-size:8px;letter-spacing:-.045em}}
