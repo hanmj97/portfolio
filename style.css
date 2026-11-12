@@ -196,3 +196,108 @@ footer{background:var(--tint)}
 @media(prefers-reduced-motion:reduce){
   #projects .project,#projects .project > h3{transition:none}
 }
+
+/* Final project cards polish: consistent category accents, compact DBPulse and readable tech badges. */
+/* Shared highlighting for all six project cards, including WORK CASE STUDY. */
+#projects .project[data-category="data"]{
+  --project-accent:#E9C98E;
+  --project-glow:rgba(233,201,142,.095);
+  --project-outline:rgba(233,201,142,.30);
+  --project-chip-bg:rgba(233,201,142,.085);
+  --project-chip-text:#D9C9AC;
+  --project-chip-strong-bg:rgba(233,201,142,.17);
+  --project-chip-strong-border:rgba(233,201,142,.50);
+}
+#projects .project[data-category="development"]{
+  --project-accent:#94C8E8;
+  --project-glow:rgba(148,200,232,.105);
+  --project-outline:rgba(148,200,232,.34);
+  --project-chip-bg:rgba(148,200,232,.085);
+  --project-chip-text:#C0D8E8;
+  --project-chip-strong-bg:rgba(148,200,232,.18);
+  --project-chip-strong-border:rgba(148,200,232,.53);
+}
+#projects .project,
+#projects .project.featured{
+  background:linear-gradient(158deg,var(--project-glow) 0%,transparent 62%),var(--card);
+  border:1px solid var(--line);
+  border-top:2px solid var(--project-accent);
+  box-shadow:inset 0 1px 0 #FFFFFF07;
+}
+#projects .project:hover{
+  border-color:var(--project-outline);
+  border-top-color:var(--project-accent);
+  box-shadow:0 14px 34px #080C1540,inset 0 1px 0 #FFFFFF09;
+}
+#projects .project .project-type,
+#projects .project .project-num,
+#projects .project > h3,
+#projects .project .mini-badge{
+  color:var(--project-accent);
+}
+#projects .project .mini-visual,
+#projects .project .dbpulse-preview,
+#projects .project .signalbridge-preview{
+  border-color:var(--project-outline);
+}
+/* More readable explanations in every project, including DBPulse. */
+#projects .project > p,
+#projects .dbpulse-project p.dbpulse-summary{
+  color:#CAD3DF;
+  font-size:13.5px;
+  line-height:1.85;
+  min-height:0;
+  overflow-wrap:break-word;
+}
+#projects .dbpulse-project p.dbpulse-summary{margin:13px 0 16px}
+#projects .project .dbpulse-subtitle,
+#projects .project .signalbridge-subtitle{
+  color:#BDCAD8;
+  font-size:13px;
+}
+/* DBPulse: expand its useful architecture preview, rather than leaving
+   a large empty area between its release status and the card footer. */
+#projects .dbpulse-project .project-footer{margin-top:0}
+#projects .dbpulse-project .dbpulse-preview{
+  flex:1 1 auto;
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:13px;
+  background:linear-gradient(155deg,var(--project-glow),var(--tint) 65%);
+}
+#projects .dbpulse-project .dbpulse-visual-top{margin-bottom:0}
+#projects .dbpulse-project .dbpulse-capabilities{margin-top:0}
+#projects .dbpulse-project .dbpulse-build-status{margin-bottom:14px}
+/* Clearer technology badges, with one primary technology on each card. */
+#projects .project .tags{gap:7px}
+#projects .project .tags span{
+  display:inline-flex;
+  align-items:center;
+  color:var(--project-chip-text);
+  background:var(--project-chip-bg);
+  border:1px solid var(--project-outline);
+  border-radius:5px;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:650;
+  line-height:1.3;
+  white-space:nowrap;
+}
+#projects .project .tags span.tag-primary{
+  background:var(--project-chip-strong-bg);
+  border-color:var(--project-chip-strong-border);
+  color:var(--project-accent);
+  font-weight:800;
+}
+@media(max-width:720px){
+  #projects .project > p,#projects .dbpulse-project p.dbpulse-summary{
+    font-size:13px;
+    line-height:1.8;
+  }
+  #projects .dbpulse-project .dbpulse-preview{
+    flex-grow:0;
+    justify-content:flex-start;
+  }
+}
