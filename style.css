@@ -142,3 +142,57 @@ footer{background:var(--tint)}
 #projects .section-head p{max-width:none;flex-shrink:0;white-space:nowrap}
 @media(max-width:720px){#projects .section-head p{font-size:clamp(8px,2.6vw,13px);letter-spacing:-.035em}}
 @media(max-width:380px){#projects .section-head p{font-size:8px;letter-spacing:-.045em}}
+
+
+/* Project-category identity: gold for data work, soft ice blue for development. */
+#projects .project{
+  --project-accent:#E9C98E;
+  border-top:2px solid #796749;
+}
+#projects .project[data-category="development"]{
+  --project-accent:#94C8E8;
+  border-top-color:#557D96;
+}
+#projects .project .project-type,
+#projects .project .project-num,
+#projects .project > h3{
+  color:var(--project-accent);
+}
+#projects .project .project-type{letter-spacing:.105em}
+#projects .project > h3{transition:color .2s}
+#projects .project .project-num{opacity:.94}
+#projects .project[data-category="development"] .mini-badge{
+  color:var(--project-accent);
+}
+#projects .project[data-category="development"] .blackjack{
+  background:#263540;
+  border-color:#456073;
+}
+#projects .project[data-category="development"] .project-footer .case-link:hover,
+#projects .project[data-category="development"] .project-footer .case-link:focus-visible{
+  color:var(--project-accent);
+}
+#projects .project[data-category="data"] .project-footer .case-link:hover,
+#projects .project[data-category="data"] .project-footer .case-link:focus-visible{
+  color:var(--project-accent);
+}
+#projects .project[data-category="development"]:hover{
+  border-color:#648DA7;
+  box-shadow:0 14px 32px #090D1740;
+}
+#projects .project[data-category="data"]:hover{
+  border-color:#9E8258;
+}
+#projects .filter[data-filter="development"].active{
+  background:#94C8E8;
+  border-color:#94C8E8;
+  color:#1E222A;
+}
+#projects .filter[data-filter="data"].active{
+  background:#E9C98E;
+  border-color:#E9C98E;
+  color:#1E222A;
+}
+@media(prefers-reduced-motion:reduce){
+  #projects .project,#projects .project > h3{transition:none}
+}
