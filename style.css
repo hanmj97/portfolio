@@ -459,3 +459,125 @@ body{font-size:17px}
 
 /* Hide the old architecture when the real screenshot has loaded. */
 #projects .dbpulse-project .dbpulse-preview[hidden]{display:none!important}
+
+/* 2026-11-14: Pair DBPulse and SignalBridge screenshots with compact flow cards. */
+#projects .project .tech-architecture{
+  flex:0 0 auto;
+  display:block;
+  min-height:0;
+  margin:4px 0 14px;
+  padding:13px 14px;
+  border:1px solid var(--project-outline);
+  border-radius:7px;
+  background:linear-gradient(150deg,rgba(233,201,142,.045),rgba(30,34,42,.22));
+}
+#projects .project .tech-architecture .dbpulse-visual-top,
+#projects .project .tech-architecture .tech-architecture-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin:0 0 11px;
+  min-width:0;
+}
+#projects .project .tech-architecture .tech-architecture-head>span:first-child{
+  color:var(--muted);
+  font-weight:800;
+  font-size:10px;
+  letter-spacing:.08em;
+}
+#projects .project .tech-architecture .tech-architecture-badge{
+  flex-shrink:0;
+  padding:4px 7px;
+  border:1px solid var(--project-outline);
+  border-radius:14px;
+  color:var(--project-accent);
+  font-size:10px;
+  font-weight:750;
+}
+#projects .project .tech-architecture .dbpulse-architecture,
+#projects .project .tech-architecture .tech-architecture-steps{
+  display:flex;
+  align-items:stretch;
+  gap:6px;
+  min-width:0;
+}
+#projects .project .tech-architecture .dbpulse-arch-node,
+#projects .project .tech-architecture .tech-architecture-node{
+  flex:1 1 0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:9px 7px;
+  background:rgba(42,48,59,.75);
+  border:1px solid var(--line);
+  border-radius:5px;
+}
+#projects .project .tech-architecture .dbpulse-arch-node small,
+#projects .project .tech-architecture .tech-architecture-node small{
+  display:block;
+  color:var(--project-accent);
+  font-size:9px;
+  line-height:1.35;
+  font-weight:800;
+  letter-spacing:.045em;
+}
+#projects .project .tech-architecture .dbpulse-arch-node strong,
+#projects .project .tech-architecture .tech-architecture-node strong{
+  display:block;
+  margin-top:4px;
+  color:var(--ink);
+  font-size:11.5px;
+  line-height:1.35;
+  font-weight:700;
+  overflow-wrap:anywhere;
+}
+#projects .project .tech-architecture .dbpulse-arch-arrow,
+#projects .project .tech-architecture .tech-architecture-arrow{
+  flex-shrink:0;
+  align-self:center;
+  color:var(--project-accent);
+  font-size:16px;
+  font-weight:750;
+}
+#projects .dbpulse-project .tech-architecture .dbpulse-capabilities,
+#projects .project .tech-architecture .tech-architecture-points{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin:11px 0 0;
+  padding-top:10px;
+  border-top:1px solid var(--line);
+}
+#projects .dbpulse-project .tech-architecture .dbpulse-capabilities>div{
+  min-width:0;
+  gap:2px;
+}
+#projects .dbpulse-project .tech-architecture .dbpulse-capabilities strong{font-size:11px}
+#projects .dbpulse-project .tech-architecture .dbpulse-capabilities small{
+  font-size:10px;
+  line-height:1.4;
+}
+#projects .project .tech-architecture .tech-architecture-points span{
+  color:#D7C6A9;
+  font-size:11px;
+  font-weight:700;
+  line-height:1.5;
+  word-break:keep-all;
+}
+#projects .dbpulse-project .project-footer{margin-top:auto}
+#projects .dbpulse-project .dbpulse-build-status{margin-top:0;margin-bottom:15px}
+@media(max-width:720px){
+  #projects .project .tech-architecture{padding:12px 11px}
+  #projects .project .tech-architecture .dbpulse-arch-node strong,
+  #projects .project .tech-architecture .tech-architecture-node strong{font-size:11px}
+}
+@media(max-width:410px){
+  #projects .project .tech-architecture .dbpulse-architecture,
+  #projects .project .tech-architecture .tech-architecture-steps{gap:4px}
+  #projects .project .tech-architecture .dbpulse-arch-node,
+  #projects .project .tech-architecture .tech-architecture-node{padding:8px 5px}
+  #projects .project .tech-architecture .tech-architecture-points{gap:4px}
+  #projects .project .tech-architecture .tech-architecture-points span{font-size:10px}
+}

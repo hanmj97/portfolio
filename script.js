@@ -1,19 +1,15 @@
 const filters=document.querySelectorAll('.filter');const projects=document.querySelectorAll('.project');filters.forEach(btn=>btn.addEventListener('click',()=>{const category=btn.dataset.filter;filters.forEach(item=>{const selected=item===btn;item.classList.toggle('active',selected);item.setAttribute('aria-pressed',String(selected))});projects.forEach(project=>project.hidden=category!=='all'&&project.dataset.category!==category)}));const menu=document.querySelector('#menu');const nav=document.querySelector('#nav');menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'});nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
 
 
-// Show the DBPulse screenshot once the image has been uploaded to GitHub.
-// Until then the existing architecture/feature diagram remains visible.
+// Keep the DBPulse architecture visible under its screenshot.
+// Only reveal the image after it loads; if unavailable, the architecture remains.
 (() => {
   const image = document.querySelector('[data-dbpulse-screenshot]');
   if (!image) return;
   const figure = image.closest('.dbpulse-screenshot');
-  const fallback = document.querySelector('.dbpulse-project .dbpulse-preview');
-  if (!figure || !fallback) return;
+  if (!figure) return;
   function showIfLoaded() {
-    if (image.naturalWidth > 0) {
-      figure.hidden = false;
-      fallback.hidden = true;
-    }
+    if (image.naturalWidth > 0) figure.hidden = false;
   }
   image.addEventListener('load', showIfLoaded, {once:true});
   if (image.complete) showIfLoaded();

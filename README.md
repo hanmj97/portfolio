@@ -40,7 +40,7 @@ MSSQL·MySQL 기반 라이브 서비스 데이터 운영, SQL 성능 분석 및 
 
 ### DBPulse 스크린샷 이미지
 
-홈페이지 DBPulse 카드에는 `assets/dbpulse/01-overview.webp`를 대표 이미지로 사용합니다. 이미지 로딩에 실패하면 기존 아키텍처 요약 화면을 대신 보여줍니다.
+홈페이지 DBPulse 카드에는 `assets/dbpulse/01-overview.webp` 대표 이미지와 MSSQL → Spring Boot → SQLite 흐름도·주요 기능 요약을 함께 표시합니다. 이미지 로딩에 실패해도 기술 구조는 그대로 확인할 수 있습니다.
 
 Notion 이력서의 DBPulse 섹션에는 동일한 4개 이미지가 접기 영역으로 등록되어 있습니다.
 
@@ -56,13 +56,13 @@ Notion 이력서의 DBPulse 섹션에는 동일한 4개 이미지가 접기 영�
 - **공개 버전:** [v0.21.3 (Windows 릴리스)](https://github.com/hanmj97/DBPulse/releases/tag/v0.21.3)
 - **목표:** 사용자가 자신의 MSSQL 서버를 등록해 모니터링·진단할 수 있는 로컬 설치형 도구
 - **주요 기능:** DMV 기반 상태 수집, Blocking/Deadlock/Wait 진단, Query Store 이력·실행계획 분석, 저성능 SQL 진단
-- **사이트 미리보기:** DBPulse 메인 운영 대시보드 이미지 (이미지 로드 오류 시 MSSQL → Spring Boot → SQLite 구조도 표시)
+- **사이트 미리보기:** DBPulse 메인 운영 대시보드 이미지 + MSSQL → Spring Boot → SQLite 흐름도·핵심 기능
 - **대표 기술:** MSSQL, Spring Boot, SQLite, React, WebView2
 
 ### SignalBridge
 
 - 공식 API/릴리스 기반 데이터를 수집·정규화하고 변경 이력을 관리하는 청년정책·채용정보 통합 플랫폼 프로젝트
-- 사이트에는 **용인시 공식 채용정보를 표시한 로컬 MVP 화면**이 포함됩니다. 이 이미지는 별도 SignalBridge 저장소의 공개 WebP 파일을 참조합니다.
+- 사이트에는 **용인시 공식 채용정보를 표시한 로컬 MVP 화면**과 API·Airflow → PostgreSQL → Spring Boot·React 구조도를 함께 표시합니다. 이미지는 별도 SignalBridge 저장소의 공개 WebP 파일을 참조합니다.
 - 관련 자료: [Architecture](https://github.com/hanmj97/SignalBridge/blob/feature/youth-policy-platform/docs/architecture.md) · [v0.2.0 릴리스](https://github.com/hanmj97/SignalBridge/releases/tag/v0.2.0)
 
 ## 3. UI/UX — 2026년 11월 리디자인
@@ -162,6 +162,7 @@ portfolio/
 
 | 날짜 | 주요 변경 |
 | --- | --- |
+| **2026-11-14** | DBPulse·SignalBridge 대표 스크린샷 아래에 기술 흐름도 추가, 기존 문구·링크 및 모바일 카드 레이아웃 유지 |
 | **2026-11-14** | DBPulse 실행 화면 대표 이미지 표시 코드 준비 (이미지 없을 때 기존 구조도 유지) |
 | **2026-11-14** | 사이트 전반 문구를 실제 작업 중심으로 수정하고 기술 스택 띠를 핵심 역량 4개로 변경 |
 | **2026-11-14** | 전체 CSS 텍스트 크기 약 1px 확대, 상단 Contact를 페이지 내 연락처 이동으로 변경·모바일 메뉴에 연락처 추가 |
