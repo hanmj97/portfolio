@@ -1,147 +1,159 @@
-# 한민재 | Technical Portfolio
+# HAN MINJAE | Database & Backend Engineer
 
 **DBA · Data Engineering · Backend Development**
 
-MSSQL·MySQL 라이브 서비스 운영, 성능 튜닝, 데이터 정합성 관리 및 백엔드 개발 경험을 소개하는 반응형 포트폴리오 홈페이지입니다. 미니멀 화이트 + 데이터 대시보드 콘셉트로 제작했으며 5가지 테마 전환을 지원합니다.
+MSSQL·MySQL 기반 라이브 서비스 데이터 운영, SQL 성능 분석 및 정합성 검증, Java/Spring 개발 경험과 개인 프로젝트를 정리한 포트폴리오입니다. 경력과 기술을 **실제 업무 사례 + 구현 결과물** 중심으로 소개합니다.
 
-🌐 **[포트폴리오 홈페이지 바로가기](https://hanmj97.github.io/portfolio/)**
+[**🌐 포트폴리오 웹사이트**](https://hanmj97.github.io/portfolio/) · [**📄 Notion 이력서**](https://three-list-53b.notion.site/DBA-Data-Engineer-8d7549dc581c82d6babc01a7d1f281fa) · [**💻 GitHub 프로필**](https://github.com/hanmj97)
 
-## 프로젝트 소개
+> **문서 업데이트:** 2026-11-13  
+> **현재 구성:** 반응형 단일 페이지 · 프로젝트 6개(데이터 5 / 개발 1) · 그라파이트 × 샴페인 골드 고정 테마
 
-- **경력** — 위메이드(DBA / 데이터 운영), 로젠소프트(Developer)
-- **데이터 분야** — 라이브 DB 성능 튜닝, 데이터 보정·정합성 검증, [DataOps Pipeline](https://github.com/hanmj97/DataOpsPipeline)
-- **통합 데이터 서비스** — [SignalBridge](https://github.com/hanmj97/SignalBridge): 용인시 공식 채용정보 수집·PostgreSQL 변경 이력·Airflow 자동화·React/Spring Boot 웹·GitHub 릴리스 알림 (로컬 MVP)
-- **개발 분야** — [Blackjack Web Service](https://github.com/hanmj97/Black-jack-React)
-- **문서 연결** — Notion 이력서, 이력서 PDF, 포트폴리오 PDF, 경력기술서 PDF
-- **UI** — 반응형 레이아웃, 프로젝트 필터(전체/데이터/개발), 5가지 컬러 테마 및 선택 테마 브라우저 저장
+## 1. 포트폴리오 구성
 
-## 기술 스택
-
-`HTML` `CSS` `JavaScript` `GitHub Pages` `Google Analytics 4` `Cloudflare Web Analytics` `Cloudflare Workers` `Cloudflare D1` `SQL`
-
-## 방문자 분석 시스템 (Analytics)
-
-포트폴리오에 **방문 흐름 분석 + 날짜별 누적 방문 카운터**를 구축했습니다.
-
-| 구성 | 기능 |
+| 섹션 | 주요 내용 |
 | --- | --- |
-| **Google Analytics 4** | 최근 5분·30분 활성 사용자, 유입 경로 및 방문 환경 분석 |
-| **Cloudflare Web Analytics** | 페이지 조회 및 방문 추이 분석 |
-| **Cloudflare Worker** | 방문 기록 수신 API, 입력 검사 및 중복 처리 |
-| **Cloudflare D1 (SQLite)** | 방문 기록 저장, 날짜별 인덱스 및 SQL 집계 |
-| **관리자 대시보드** | 인증 후 오늘/누적 방문 횟수 조회, 약 5초마다 갱신 |
+| Home | 직무 소개, DBA·개발 경력 요약, 핵심 역량 |
+| About | DB 운영 안정성, 성능 분석, 데이터·개발 연계 경험 |
+| Experience | 위메이드 DBA / 데이터 운영, 로젠소프트 Developer |
+| Selected Work | 프로젝트 및 업무 사례 6개, 전체/데이터/개발 필터 |
+| Tech Stack | DBMS, 클라우드·데이터 도구, 백엔드 및 협업 도구 |
+| Documents & Contact | Notion 이력서, PDF 문서, GitHub 및 연락처 |
 
-### 데이터 흐름
+### 경력 요약
+
+- **위메이드 (2023.07–2025.08)** — MSSQL·MySQL 기반 게임 라이브 서비스 데이터베이스 운영, 정기 점검·장애 대응·데이터 보정 및 정합성 검증. Azure 모니터링·SQL 실행계획 분석과 복합 인덱스 개선을 통한 성능 문제 대응.
+- **로젠소프트 (2021.10–2022.10)** — Java/Spring·Tibero 기반 환경안전관리 시스템 개발. 관리자 기능, 차트 시각화, 스케줄러 및 자동 이메일 발송 기능 구현.
+
+## 2. 주요 프로젝트 및 업무 사례
+
+사이트의 **SELECTED WORK** 섹션과 동일하게 구성했습니다.
+
+| 분류 | 프로젝트 / 사례 | 핵심 내용 |
+| --- | --- | --- |
+| 데이터 | **[DBPulse](https://github.com/hanmj97/DBPulse)** | Windows 설치형 MSSQL 운영·성능 진단 도구. Blocking/Deadlock/Wait, Query Store, SQL 튜닝 진단 |
+| 데이터 | **[SignalBridge](https://github.com/hanmj97/SignalBridge)** | 용인시 공식 채용 API·GitHub Releases 수집, PostgreSQL 변경 이력, Airflow 자동화, React/Spring Boot 웹 |
+| 데이터 | **[DataOps Pipeline](https://github.com/hanmj97/DataOpsPipeline)** | MSSQL → Python ETL/UPSERT → PostgreSQL, Airflow 기반 실행 관리 |
+| 데이터 | **라이브 DB 성능 튜닝** | 업데이트 직후 DB 부하 문제에 대해 Azure 지표와 실행계획 분석, 복합 인덱스 구조 개선 |
+| 데이터 | **데이터 보정과 정합성 관리** | 라이브 서비스 데이터 오류 범위 식별 및 작업 전후 건수·키·상태값 검증 |
+| 개발 | **[Blackjack Web Service](https://github.com/hanmj97/Black-jack-React)** | React·Node.js·MySQL 기반 로그인, 게임 로직, 데이터 저장 웹 서비스 |
+
+### DBPulse — 대표 프로젝트
+
+- **공개 버전:** [v0.21.3 (Windows 릴리스)](https://github.com/hanmj97/DBPulse/releases/tag/v0.21.3)
+- **목표:** 사용자가 자신의 MSSQL 서버를 등록해 모니터링·진단할 수 있는 로컬 설치형 도구
+- **주요 기능:** DMV 기반 상태 수집, Blocking/Deadlock/Wait 진단, Query Store 이력·실행계획 분석, 저성능 SQL 진단
+- **사이트 미리보기:** MSSQL → Spring Boot → SQLite 아키텍처 및 기능 요약
+- **대표 기술:** MSSQL, Spring Boot, SQLite, React, WebView2
+
+### SignalBridge
+
+- 공식 API/릴리스 기반 데이터를 수집·정규화하고 변경 이력을 관리하는 청년정책·채용정보 통합 플랫폼 프로젝트
+- 사이트에는 **용인시 공식 채용정보를 표시한 로컬 MVP 화면**이 포함됩니다. 이 이미지는 별도 SignalBridge 저장소의 공개 WebP 파일을 참조합니다.
+- 관련 자료: [Architecture](https://github.com/hanmj97/SignalBridge/blob/feature/youth-policy-platform/docs/architecture.md) · [v0.2.0 릴리스](https://github.com/hanmj97/SignalBridge/releases/tag/v0.2.0)
+
+## 3. UI/UX — 2026년 11월 리디자인
+
+기존 **5개 테마 선택 기능은 제거**하고, 방문자 모두에게 일관된 단일 다크 테마를 제공합니다.
+
+| 디자인 요소 | 색상 | HEX |
+| --- | --- | --- |
+| 사이트 배경 | 그라파이트 | `#1E222A` |
+| 프로젝트 카드 배경 | 다크 그레이 | `#2A303B` |
+| 기본 강조 / 데이터 프로젝트 | 샴페인 골드 | `#E9C98E` |
+| 개발 프로젝트 강조 | 아이스 블루 | `#94C8E8` |
+
+- **카테고리 중심 시각화:** PERSONAL PROJECT / WORK CASE STUDY 구분과 관계없이 데이터 5개 카드는 골드, 개발 1개 카드는 블루 계열로 표시
+- **모든 프로젝트 카드 일관성:** 카테고리별 상단 테두리·은은한 배경 그라데이션·타이틀·상태/번호·호버 효과 적용
+- **DBPulse 카드 레이아웃:** 하단의 불필요한 빈 공간을 줄이도록 아키텍처 미리보기 배치 개선
+- **가독성:** 프로젝트 설명 글꼴 크기·줄 간격·명도 대비 개선
+- **기술 스택 태그:** 카테고리별 톤 통일 및 프로젝트별 대표 기술(MSSQL, PostgreSQL, Python, T-SQL, React 등) 강조
+- **사용성:** 전체/데이터/개발 필터, 모바일 내비게이션, 외부 프로젝트/문서 링크 유지
+
+리디자인은 콘텐츠와 기존 분석 기능의 동작을 유지하는 **프론트엔드 UI 개선**입니다.
+
+## 4. 구현 기술과 구조
+
+| 영역 | 기술 / 서비스 | 용도 |
+| --- | --- | --- |
+| 웹 | HTML, CSS, Vanilla JavaScript | 정적 단일 페이지, 카드 필터링, 반응형 UI |
+| 호스팅 | GitHub Pages | `main` 브랜치 루트 페이지 공개 |
+| 트래픽 분석 | Google Analytics 4, Cloudflare Web Analytics | 방문 경향·유입 및 조회 분석 |
+| 방문·클릭 이벤트 API | Cloudflare Workers | 브라우저 요청 검증, 방문·이벤트 저장 |
+| 데이터 저장 | Cloudflare D1 (SQLite) | 방문/클릭 집계 및 통계 조회 |
+| 알림 | Discord Webhook | 신규 방문 기록 생성 시 채널 알림 |
 
 ```text
-Portfolio Website (GitHub Pages)
-        │
-        ├── Google Analytics 4 → 실시간 트래픽 분석
-        ├── Cloudflare Web Analytics → 페이지 방문/조회 분석
-        │
-        └── JavaScript (sessionStorage UUID)
-                │ POST /visit
-                ▼
-            Cloudflare Worker
-                │ INSERT OR IGNORE
-                ▼
-            Cloudflare D1
-                │
-                └── 관리자 인증 → /stats → 오늘/누적 방문 횟수
+Browser
+  └── GitHub Pages (index.html / style.css / script.js)
+       ├── Portfolio UI
+       │    ├── Experience / Projects / Skills / Documents
+       │    └── Project filters (All / Data / Development)
+       ├── Google Analytics 4
+       ├── Cloudflare Web Analytics
+       └── POST /visit, POST /event
+              └── Cloudflare Worker
+                     ├── D1 (portfolio_visits / portfolio_events)
+                     ├── Authenticated admin dashboard / CSV
+                     └── Discord Webhook (new saved visit)
 ```
 
-**[분석 시스템 상세 구현 기록 및 설정 안내](./analytics/README.md)** · **[D1 테이블/인덱스 SQL](./analytics/schema.sql)**
+### Portfolio Analytics V4 / Discord 알림 V4.1
 
-> 자체 카운터는 브라우저 탭의 세션 기준 방문 이벤트를 기록합니다. 실제 고유 인원수 또는 정확한 동시 접속자 수가 아닙니다. 방문자 이름·이메일·IP는 애플리케이션 D1 테이블에 저장하지 않습니다. 관리자 인증용 `ADMIN_TOKEN`은 Cloudflare Secret으로만 관리합니다.
+- 브라우저 탭 세션의 임의 UUID와 D1 중복 방지 로직을 이용한 방문 이벤트 집계
+- 방문 추이, 유입 도메인 유형, 기기·브라우저 구분, 최근 30일 기준 신규·재방문 **브라우저 세션 추정**
+- 일부 문서 및 프로젝트 링크 클릭 집계(`POST /event`). **클릭은 실제 열람·다운로드 완료를 뜻하지 않습니다.**
+- 관리자 인증 후 통계 대시보드 및 CSV 조회
+- D1에 새 방문 기록이 저장되면 Discord Webhook 알림 전송(시간·IP 기반 추정 지역·당일 방문 횟수)
+- 본인 브라우저의 자체 Worker/D1 집계 제외·재개 지원(`analytics_optout=1` / `0`). GA4·Cloudflare 분석에는 별도 설정 필요
 
-## 주요 파일
+**주의:** 방문 이벤트는 고유한 실제 사람 수나 정확한 동시 접속자 수를 의미하지 않습니다. 추정 위치는 GPS가 아닌 IP 기반의 대략적인 정보이며, 네트워크/추적 방지/전송 오류에 따라 누락될 수 있습니다. Discord 알림도 전송을 보장하는 큐 기반 시스템은 아닙니다.
+
+**현재 프론트엔드의 클릭 이벤트 분류 목록은 제한적입니다.** DBPulse·SignalBridge의 새 링크가 모두 자체 D1 클릭 이벤트로 집계되는 것은 아닙니다. 확대하려면 `script.js`의 링크 분류 및 Worker 허용 목록을 함께 수정·배포해야 합니다.
+
+관련 문서:
+- [Analytics 구조 및 운영 설명](./analytics/README.md)
+- [Cloudflare Worker 소스](./analytics/worker.js)
+- [D1 스키마](./analytics/schema.sql) · [V4 마이그레이션](./analytics/migrate-v3-to-v4.sql)
+- [Discord 알림 설정·점검](./analytics/discord-notifications.md)
+
+## 5. 저장소 구조
 
 ```text
 portfolio/
-├── index.html           # 메인 페이지 / GA4 / Cloudflare Web Analytics
-├── style.css            # 반응형 레이아웃 및 5가지 테마
-├── script.js            # 프로젝트 필터, 테마 설정, 방문 이벤트 전송
+├── index.html                   # 경력·프로젝트·기술·문서 및 분석 스크립트 연결
+├── style.css                    # 그라파이트/샴페인 골드 고정 테마, 반응형 스타일
+├── script.js                    # 프로젝트 필터·모바일 메뉴·방문 및 클릭 이벤트
 ├── analytics/
-│   ├── README.md        # Worker + D1 방문 분석 구조 및 운영 문서
-│   └── schema.sql       # D1 데이터베이스 스키마 및 조회 예시
+│   ├── README.md                # 방문 분석 시스템 운영 문서
+│   ├── worker.js                # Worker V4.1 관리자 통계·Discord 알림 코드
+│   ├── schema.sql               # D1 테이블 및 인덱스
+│   ├── migrate-v3-to-v4.sql     # 방문/이벤트 분석용 D1 마이그레이션
+│   └── discord-notifications.md # Discord 설정·테스트 안내
 └── README.md
 ```
 
-## 배포 및 운영
+## 6. 배포 및 운영 참고
 
-- 호스팅: **GitHub Pages** (public 저장소, `main` 브랜치 / `(root)`)
-- 홈페이지: [hanmj97.github.io/portfolio](https://hanmj97.github.io/portfolio/)
-- Worker API 및 D1 데이터베이스는 **Cloudflare에서 별도로 운영**합니다. GitHub에 웹페이지 코드를 변경해도 Worker가 자동 배포되지는 않습니다.
-- GA4/Cloudflare 대시보드 및 관리자 통계 화면은 사이트 방문자에게 기본적으로 공개되지 않으며, 통계 API는 관리자 인증이 필요합니다.
-- Google Drive로 연결된 문서는 별도 공개 권한 설정이 필요합니다.
+- **정적 사이트:** GitHub Pages → `main` 브랜치 → `/(root)`. 웹 파일 변경 후 Pages 배포가 완료되어야 반영됩니다.
+- **스타일 갱신:** `index.html`은 CSS 파일에 버전 쿼리를 사용해 이전 스타일 캐시가 남는 문제를 줄입니다.
+- **분석 백엔드:** GitHub Pages 변경은 Cloudflare Worker에 자동 적용되지 않습니다. Worker·D1 운영/배포는 Cloudflare에서 별도로 수행합니다.
+- **비밀값:** `ADMIN_TOKEN`과 `DISCORD_WEBHOOK_URL` 등의 실제 값은 Cloudflare Secret으로 관리하며 저장소에 커밋하지 않습니다.
+- **외부 문서:** Notion·Google Drive의 공개 여부는 해당 서비스의 공유 권한 설정에 따릅니다.
+- **운영 주의:** 분석 도구 및 IP 기반 위치 추정을 사용할 경우 적절한 개인정보 고지와 서비스 설정을 검토합니다.
 
-## 변경 이력
+## 7. 변경 이력
 
-## V4 수정 내용
-- 모든 제목의 장식용 마침표 제거, DEVELOPMENT 1년으로 교체
-- MSSQL 및 MySQL 실무 운영 명시, 경력 설명 보강
-- 기술 스택의 부가 경력 라벨 제거, 전체 칩 강조색 통일
-- 문서 순서: Notion → 이력서 → 포트폴리오 → 경력기술서
-- Notion URL 갱신
+| 날짜 | 주요 변경 |
+| --- | --- |
+| **2026-11-13** | 그라파이트 × 샴페인 골드 고정 테마로 전환, 5개 테마 선택 UI 제거 |
+| **2026-11-13** | 데이터(골드)/개발(아이스 블루) 프로젝트 시각 구분, 전체 6개 카드 강조 통일 |
+| **2026-11-13** | DBPulse 카드 여백 개선, 프로젝트 설명 가독성·기술 스택 태그 디자인 개선 |
+| **2026-10-22** | DBPulse v0.21.3 프로젝트 카드/Windows 공개 릴리스 링크 반영 |
+| **2026-10** | SignalBridge 프로젝트 및 로컬 MVP 이미지, 관련 GitHub·아키텍처·릴리스 링크 추가 |
+| **2026-10** | Analytics V4(유입·클릭·기기·신규/재방문·CSV)와 V4.1 Discord 신규 방문 알림 구현 |
+| **2026-10** | DataOps Pipeline 완료 표시, 경력·문서 링크·포트폴리오 UI 정리 |
 
-## V5 수정 내용
-- 히어로 영역 두 번째 버튼을 Notion 이력서로 변경
-- 경력과 주요 업무 섹션 오른쪽 소개 문구 간결화
-- DataOps Pipeline 완료 표시 및 GitHub 저장소 연결: https://github.com/hanmj97/DataOpsPipeline
+---
 
-## V6 수정 내용
-- SELECTED WORK 필터를 전체(04) / 데이터(03) / 개발(01)로 변경
-- 데이터: DataOps Pipeline, 라이브 DB 성능 튜닝, 데이터 정합성 관리
-- 개발: Blackjack Web Service
-- 기존 5가지 테마 및 외부 링크 유지
-
-## 방문 분석 시스템 추가 (2026.10)
-
-- GitHub Pages 홈페이지에 GA4 측정 코드 추가 및 Cloudflare Web Analytics 유지
-- `script.js`에서 Cloudflare Worker `/visit` 엔드포인트로 세션 기준 방문 기록 전송
-- D1 `portfolio_visits` 테이블 및 날짜 인덱스 구성
-- Worker 관리자 인증 및 오늘/누적 방문 집계 화면 연결
-- [상세 설계 문서](./analytics/README.md), [SQL 스키마](./analytics/schema.sql) 저장
-
-
-## 방문 분석 업데이트 (2026.10)
-
-기존 Google Analytics 4 및 Cloudflare Web Analytics를 유지하면서 **Cloudflare Worker + D1 관리자 대시보드 V4**에 프론트엔드 이벤트 수집을 연동했습니다.
-
-- 일별·주별·월별 방문 추이, 기존 지역 지도 및 방문 시각
-- **문서·프로젝트 링크 클릭 집계** (\`/event\` API, 실제 문서 열람 여부는 알 수 없음)
-- **유입 도메인** 구분 (채용 사이트/검색/직접 접속/외부 링크)
-- **PC·모바일 및 브라우저** 집계
-- **최근 30일 기준 신규·재방문 브라우저 세션 추정**
-- **내 브라우저 D1 집계 제외/재개** (GA4 및 Cloudflare 기본 분석에는 별도 적용)
-- **관리자 인증 후 CSV 집계 다운로드**
-
-구성: \`script.js\` → Worker \`/visit\`, \`/event\` → D1 \`portfolio_visits\`, \`portfolio_events\` → Worker 관리자 대시보드.
-
-- [상세 아키텍처와 V4 운영 주의사항](./analytics/README.md)
-- [V4 D1 마이그레이션 SQL](./analytics/migrate-v3-to-v4.sql)
-
-관리자 인증용 \`ADMIN_TOKEN\` Secret은 GitHub에 저장하지 않습니다. 기존 방문 기록은 보존되며 새 클릭/유입/접속 환경 정보는 V4 도입 이후부터 수집됩니다.
-
-
-### 실시간 Discord 알림 (방문 분석 시스템 V4.1)
-
-방문 기록이 Cloudflare D1에 **새로 삽입된 경우에만** Cloudflare Worker가 Discord Webhook으로 알림을 전송합니다. 같은 방문 세션의 새로고침은 중복 알림이 발생하지 않습니다.
-
-- **알림 내용**: 방문 시간(KST), IP 기반 추정 지역(도시·광역지역·국가), 오늘 누적 방문 횟수
-- **알림 시점**: `INSERT OR IGNORE`로 새 방문 저장 성공 시 `ctx.waitUntil`로 비동기 발송
-- **관리자 테스트**: `POST /admin/test-notification` (Bearer 인증, 방문 횟수 증가 없음)
-- **보안**: `DISCORD_WEBHOOK_URL` 및 `ADMIN_TOKEN`은 Cloudflare Secret에만 보관
-- **예외 처리**: 알림 전송 실패와 무관하게 D1 방문 기록은 보존. Discord 네트워크 실패 시 알림 누락 가능
-- **모바일 푸시**: PC Discord 사용 중에는 모바일 알림이 억제될 수 있어 PC 앱 종료 후 확인
-
-[Worker V4.1 전체 소스](./analytics/worker.js) · [Discord 설치·알림 문제 해결](./analytics/discord-notifications.md) · [방문 분석 기술 문서](./analytics/README.md)
-
-Discord 알림은 이름·소속 등 방문자의 신원을 알아내는 기능이 아니며, 위치 정보도 IP 기반 추정치입니다.
-
-## SignalBridge 프로젝트 카드 추가 (2026.10)
-
-- 프로젝트 필터: 전체 5개 / 데이터 4개 / 개발 1개. 기존 네 프로젝트와 필터 기능은 유지합니다.
-- 공식 용인시 채용정보 실데이터 화면을 연결하고 [GitHub](https://github.com/hanmj97/SignalBridge) · [시스템 아키텍처](https://github.com/hanmj97/SignalBridge/blob/feature/youth-policy-platform/docs/architecture.md) · [v0.2.0 릴리스](https://github.com/hanmj97/SignalBridge/releases/tag/v0.2.0) 링크를 추가했습니다.
-- 이미지 프리뷰는 공개 SignalBridge 저장소의 WebP 파일을 직접 참조하므로 해당 브랜치와 파일 경로가 유지되어야 합니다.
-- GitHub Pages/GA4/Cloudflare Web Analytics/Worker+D1·Discord 방문 알림 구현 코드는 변경하지 않았습니다. V4 Worker의 허용된 클릭 이벤트 유형은 그대로이므로 **새 SignalBridge 링크 클릭은 아직 자체 D1 이벤트로 집계하지 않습니다**. 이를 집계하려면 추후 Worker의 클릭 대상 허용 목록과 배포를 별도로 업데이트해야 합니다.
+이 저장소는 **포트폴리오 사이트와 방문 분석 구현**을 관리합니다. 각 프로젝트의 실제 소스코드, 설치 방법, 실행 환경, 기술적 상세 설명은 위의 **개별 프로젝트 저장소**에서 확인할 수 있습니다.
