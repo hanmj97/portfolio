@@ -301,3 +301,95 @@ footer{background:var(--tint)}
     justify-content:flex-start;
   }
 }
+
+
+/* 2026-11-14: Contextual resume / PDF CTAs, keeping the existing visual identity. */
+.hero .hero-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  max-width:480px;
+  margin:29px 0 25px;
+}
+.hero .hero-actions .btn{
+  min-width:0;
+  gap:10px;
+  line-height:1.5;
+  padding:14px 15px;
+  border-radius:6px;
+  font-size:12px;
+  white-space:normal;
+  text-wrap:balance;
+}
+.hero .hero-actions .hero-primary{
+  grid-column:1 / -1;
+  font-size:13px;
+  padding:16px 19px;
+  box-shadow:0 8px 24px rgba(233,201,142,.09);
+}
+.hero .hero-actions .btn span,.section-cta-link span{flex-shrink:0}
+.section-cta{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:24px;
+  margin-top:37px;
+  padding:25px 29px;
+  border:1px solid rgba(233,201,142,.29);
+  border-radius:10px;
+  background:linear-gradient(110deg,rgba(233,201,142,.09),rgba(42,48,59,.93) 66%);
+}
+.section-cta-kicker{
+  display:block;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.11em;
+  margin-bottom:11px;
+}
+.section-cta h3{
+  color:var(--ink);
+  font-size:clamp(16px,1.7vw,20px);
+  letter-spacing:-.04em;
+  line-height:1.45;
+  margin:0 0 7px;
+}
+.section-cta p{
+  color:#C4CFDC;
+  font-size:12.5px;
+  line-height:1.8;
+  margin:0;
+}
+.section-cta-link{
+  gap:18px;
+  min-width:204px;
+  white-space:nowrap;
+  justify-content:space-between;
+  border-radius:6px;
+  font-size:12px;
+  line-height:1.5;
+}
+.section-cta .secondary{
+  background:rgba(30,34,42,.46);
+  border:1px solid rgba(233,201,142,.4);
+  color:var(--ink);
+}
+.section-cta .secondary:hover{background:var(--accent-soft);color:var(--accent)}
+.section-cta .primary{color:var(--page)}
+#documents .doc-title{line-height:1.5;word-break:keep-all}
+#documents .doc-title small{line-height:1.5}
+#documents .doc{min-width:0}
+@media(max-width:900px){
+  .section-cta{grid-template-columns:1fr;gap:18px;padding:23px}
+  .section-cta-link{width:fit-content;max-width:100%}
+}
+@media(max-width:520px){
+  .hero .hero-actions{grid-template-columns:1fr;max-width:100%}
+  .hero .hero-actions .hero-primary{grid-column:auto}
+  .hero .hero-actions .btn{font-size:12px}
+  .section-cta{padding:21px 18px;margin-top:27px}
+  .section-cta-link{width:100%;min-width:0;white-space:normal}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero .hero-actions .btn,.section-cta .btn{transition:none}
+}
