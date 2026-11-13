@@ -149,6 +149,24 @@ portfolio/
 └── README.md
 ```
 
+## 공유 미리보기와 브라우저 아이콘
+
+포트폴리오의 **그라파이트 배경(#1E222A) · 샴페인 골드(#E9C98E)** 디자인을 브라우저 탭과 링크 공유 화면에도 적용했습니다.
+
+| 파일 | 용도 |
+| --- | --- |
+| [`favicon.svg`](./favicon.svg) | 최신 브라우저용 벡터 Favicon (H. 로고) |
+| [`favicon-32.png`](./favicon-32.png) | 32×32 PNG 아이콘 |
+| [`apple-touch-icon.png`](./apple-touch-icon.png) | 180×180 Apple 홈 화면 아이콘 |
+| [`assets/og/portfolio-preview.png`](./assets/og/portfolio-preview.png) | 1200×630 PNG 공유 미리보기 |
+
+`index.html`에는 `canonical`, `og:title`, `og:description`, `og:url`, `og:image`, `og:image:width/height`, `twitter:card` 등을 추가했습니다.
+
+- **사이트 주소:** https://hanmj97.github.io/portfolio/
+- **공유 이미지:** https://hanmj97.github.io/portfolio/assets/og/portfolio-preview.png
+- 카카오톡·메신저 등 플랫폼의 캐시에 따라 처음 공유했을 때 이전 미리보기가 나올 수 있습니다. 시간이 지난 뒤 다시 확인하거나 해당 서비스의 캐시 초기화 도구를 이용하세요.
+- 정적 파일은 GitHub Pages 배포 완료 후 실제 주소에서 확인할 수 있습니다. 공유 플랫폼별 화면과 캐시 갱신까지 자동 보장하지는 않습니다.
+
 ## 6. 배포 및 운영 참고
 
 - **정적 사이트:** GitHub Pages → `main` 브랜치 → `/(root)`. 웹 파일 변경 후 Pages 배포가 완료되어야 반영됩니다.
@@ -162,6 +180,7 @@ portfolio/
 
 | 날짜 | 주요 변경 |
 | --- | --- |
+| **2026-11-14** | 사이트 Favicon(H.) 및 1200×630 공유 미리보기 PNG·Open Graph/X 카드 메타 태그 추가 |
 | **2026-11-14** | DBPulse·SignalBridge 대표 스크린샷 아래에 기술 흐름도 추가, 기존 문구·링크 및 모바일 카드 레이아웃 유지 |
 | **2026-11-14** | DBPulse 실행 화면 대표 이미지 표시 코드 준비 (이미지 없을 때 기존 구조도 유지) |
 | **2026-11-14** | 사이트 전반 문구를 실제 작업 중심으로 수정하고 기술 스택 띠를 핵심 역량 4개로 변경 |
