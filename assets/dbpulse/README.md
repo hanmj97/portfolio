@@ -1,25 +1,16 @@
 # DBPulse screenshots
 
-이 폴더에 준비된 이미지 파일 4개(WebP)를 올리면 웹사이트와 Notion에서 공개 경로로 참조할 수 있습니다.
+포트폴리오 웹사이트와 Notion 이력서에서 사용 중인 DBPulse 화면 캡처입니다. 네 개의 WebP 파일을 모두 GitHub에 업로드했습니다.
 
 | 파일명 | 화면 | 사용 위치 |
 | --- | --- | --- |
-| `01-overview.webp` | 메인 대시보드 | 웹 포트폴리오 / Notion |
-| `02-query-store.webp` | 쿼리 및 Query Store | Notion |
-| `03-deadlock.webp` | Deadlock 목록 | Notion |
-| `04-incident-analysis.webp` | Incident 원인 분석 | Notion |
+| [`01-overview.webp`](./01-overview.webp) | DB 운영 현황 및 CPU·요청 추이 | 웹 포트폴리오 + Notion |
+| [`02-query-store.webp`](./02-query-store.webp) | Query Store / SQL Tuning Advisor | Notion |
+| [`03-deadlock.webp`](./03-deadlock.webp) | Deadlock 이벤트 목록 | Notion |
+| [`04-incident-analysis.webp`](./04-incident-analysis.webp) | Incident Investigation, Blocking·Wait 근거 | Notion |
 
-## 올리는 방법
+웹페이지에서는 첫 번째 이미지를 DBPulse 카드의 대표 화면으로 불러옵니다. 불러오지 못하는 경우 기존 아키텍처·기능 요약 패널을 대신 보여줍니다.
 
-1. GitHub에서 이 폴더(`assets/dbpulse/`)로 이동
-2. **Add file → Upload files** 를 누르고 준비된 `.webp` 4개를 그대로 업로드
-3. **Commit changes** 를 눌러 `main`에 저장
-4. GitHub Pages 배포 후 DBPulse 대표 이미지가 표시되는지 확인
+Notion 이력서: [DBPulse 실행 화면 4장 보기](https://three-list-53b.notion.site/DBA-Data-Engineer-8d7549dc581c82d6babc01a7d1f281fa)
 
-> 이 폴더의 README만으로 스크린샷이 자동으로 업로드되지는 않습니다.
-
-이미지 URL 예시(파일을 업로드한 후에만 유효):
-
-`https://raw.githubusercontent.com/hanmj97/portfolio/main/assets/dbpulse/01-overview.webp`
-
-사용자 제공 로컬 테스트 화면이며, 이벤트 및 성능 지표는 테스트 시점 자료입니다.
+이 이미지는 로컬 테스트용 MSSQL 환경에서 캡처한 것으로, 화면에 표시된 사건과 성능 지표는 테스트 시점의 기록입니다.

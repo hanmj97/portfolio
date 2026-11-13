@@ -40,23 +40,23 @@ MSSQL·MySQL 기반 라이브 서비스 데이터 운영, SQL 성능 분석 및 
 
 ### DBPulse 스크린샷 이미지
 
-홈페이지 DBPulse 카드에는 `assets/dbpulse/01-overview.webp`를 대표 화면으로 사용하는 구성이 준비되어 있습니다. 파일이 실제 저장소에 올라오기 전에는 기존 아키텍처 요약을 그대로 보여주며, 이미지가 업로드되면 대표 화면이 자동 표시됩니다.
+홈페이지 DBPulse 카드에는 `assets/dbpulse/01-overview.webp`를 대표 이미지로 사용합니다. 이미지 로딩에 실패하면 기존 아키텍처 요약 화면을 대신 보여줍니다.
 
-Notion에는 동일한 저장소의 4개 이미지를 사용하도록 계획되어 있습니다.
+Notion 이력서의 DBPulse 섹션에는 동일한 4개 이미지가 접기 영역으로 등록되어 있습니다.
 
 - `01-overview.webp` — DB 운영 개요 (홈페이지 + Notion)
 - `02-query-store.webp` — Query Store / SQL 튜닝 진단 (Notion)
 - `03-deadlock.webp` — Deadlock 이력 (Notion)
 - `04-incident-analysis.webp` — Incident 원인 분석 (Notion)
 
-이미지 소스는 사용자가 직접 실행한 로컬 테스트 DBPulse 캡처입니다. 이미지 업로드가 끝나야 Notion의 이미지 갤러리도 게시할 수 있습니다. 파일 업로드 방법은 [assets/dbpulse/README](./assets/dbpulse/README.md) 참고.
+이미지 소스는 사용자가 직접 실행한 로컬 테스트 DBPulse 캡처입니다. 파일 목록과 공개 이미지 링크는 [assets/dbpulse/README](./assets/dbpulse/README.md)에서 확인할 수 있습니다.
 
 ### DBPulse — 대표 프로젝트
 
 - **공개 버전:** [v0.21.3 (Windows 릴리스)](https://github.com/hanmj97/DBPulse/releases/tag/v0.21.3)
 - **목표:** 사용자가 자신의 MSSQL 서버를 등록해 모니터링·진단할 수 있는 로컬 설치형 도구
 - **주요 기능:** DMV 기반 상태 수집, Blocking/Deadlock/Wait 진단, Query Store 이력·실행계획 분석, 저성능 SQL 진단
-- **사이트 미리보기:** MSSQL → Spring Boot → SQLite 아키텍처 및 기능 요약
+- **사이트 미리보기:** DBPulse 메인 운영 대시보드 이미지 (이미지 로드 오류 시 MSSQL → Spring Boot → SQLite 구조도 표시)
 - **대표 기술:** MSSQL, Spring Boot, SQLite, React, WebView2
 
 ### SignalBridge
