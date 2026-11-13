@@ -404,3 +404,23 @@ body{font-size:17px}
   #nav .nav-contact-mobile{display:block;color:var(--accent)}
 }
 @media(max-width:720px){#contact{scroll-margin-top:64px}}
+
+/* Core expertise strip (replaces duplicate technology-name strip). */
+.strip-inner{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  justify-items:center;
+  align-items:center;
+  gap:15px;
+  text-align:center;
+}
+.strip-inner span{line-height:1.5;word-break:keep-all}
+@media(max-width:720px){
+  .strip-inner{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:15px 12px;
+    padding-top:20px;
+    padding-bottom:20px;
+    font-size:12px;
+  }
+}
