@@ -38,6 +38,19 @@ MSSQL·MySQL 기반 라이브 서비스 데이터 운영, SQL 성능 분석 및 
 | 데이터 | **데이터 보정과 정합성 관리** | 라이브 서비스 데이터 오류 범위 식별 및 작업 전후 건수·키·상태값 검증 |
 | 개발 | **[Blackjack Web Service](https://github.com/hanmj97/Black-jack-React)** | React·Node.js·MySQL 기반 로그인, 게임 로직, 데이터 저장 웹 서비스 |
 
+### DBPulse 스크린샷 이미지
+
+홈페이지 DBPulse 카드에는 `assets/dbpulse/01-overview.webp`를 대표 화면으로 사용하는 구성이 준비되어 있습니다. 파일이 실제 저장소에 올라오기 전에는 기존 아키텍처 요약을 그대로 보여주며, 이미지가 업로드되면 대표 화면이 자동 표시됩니다.
+
+Notion에는 동일한 저장소의 4개 이미지를 사용하도록 계획되어 있습니다.
+
+- `01-overview.webp` — DB 운영 개요 (홈페이지 + Notion)
+- `02-query-store.webp` — Query Store / SQL 튜닝 진단 (Notion)
+- `03-deadlock.webp` — Deadlock 이력 (Notion)
+- `04-incident-analysis.webp` — Incident 원인 분석 (Notion)
+
+이미지 소스는 사용자가 직접 실행한 로컬 테스트 DBPulse 캡처입니다. 이미지 업로드가 끝나야 Notion의 이미지 갤러리도 게시할 수 있습니다. 파일 업로드 방법은 [assets/dbpulse/README](./assets/dbpulse/README.md) 참고.
+
 ### DBPulse — 대표 프로젝트
 
 - **공개 버전:** [v0.21.3 (Windows 릴리스)](https://github.com/hanmj97/DBPulse/releases/tag/v0.21.3)
@@ -149,6 +162,7 @@ portfolio/
 
 | 날짜 | 주요 변경 |
 | --- | --- |
+| **2026-11-14** | DBPulse 실행 화면 대표 이미지 표시 코드 준비 (이미지 없을 때 기존 구조도 유지) |
 | **2026-11-14** | 사이트 전반 문구를 실제 작업 중심으로 수정하고 기술 스택 띠를 핵심 역량 4개로 변경 |
 | **2026-11-14** | 전체 CSS 텍스트 크기 약 1px 확대, 상단 Contact를 페이지 내 연락처 이동으로 변경·모바일 메뉴에 연락처 추가 |
 | **2026-11-14** | 메인/경력/프로젝트/문서 섹션의 Notion 이력서 및 포트폴리오 PDF 연결 동선 개선 (기존 링크·집계 로직 유지) |
