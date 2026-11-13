@@ -581,3 +581,16 @@ body{font-size:17px}
   #projects .project .tech-architecture .tech-architecture-points{gap:4px}
   #projects .project .tech-architecture .tech-architecture-points span{font-size:10px}
 }
+
+/* Hero copy: tighter title line spacing and balanced spacing to the description. */
+.hero-left h1{margin-bottom:12px}
+.hero-left h1 .light{
+  display:block;
+  margin-top:12px;
+  line-height:1.13;
+}
+.hero-left .hero-intro{
+  line-height:1.8;
+  margin-bottom:0;
+}
+.hero-left .hero-actions{margin-top:24px}
