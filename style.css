@@ -594,3 +594,18 @@ body{font-size:17px}
   margin-bottom:0;
 }
 .hero-left .hero-actions{margin-top:24px}
+
+/* Keep Korean words intact in explanatory paragraphs.
+   Prevent single-syllable endings such as "다." from wrapping alone. */
+.hero-left .hero-intro,
+.section-head p,
+.strength p,
+.job-main > p:not(.job-role),
+#projects .project > p,
+#projects .dbpulse-project p.dbpulse-summary,
+.section-cta p,
+.end-grid p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
