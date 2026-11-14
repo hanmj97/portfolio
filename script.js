@@ -116,6 +116,8 @@ const filters=document.querySelectorAll('.filter');const projects=document.query
       if (u.protocol==='mailto:') return 'email_contact';
       if (u.protocol!=='http:' && u.protocol!=='https:') return 'other_internal';
       const host=u.hostname.toLowerCase(),path=u.pathname.replace(/\/$/,'');
+      // A demo on another GitHub Pages path shares the portfolio origin.
+      if (host==='hanmj97.github.io' && path.startsWith('/Black-jack-React')) return 'blackjack_demo';
       if (u.origin===location.origin) return 'other_internal';
       if (host.endsWith('.notion.site')) return 'notion_resume';
       if (host==='drive.google.com') {
@@ -136,7 +138,6 @@ const filters=document.querySelectorAll('.filter');const projects=document.query
         if (path.startsWith('/hanmj97/DataOpsPipeline')) return 'dataops_github';
         if (path.startsWith('/hanmj97/Black-jack-React')) return 'blackjack_github';
       }
-      if (host==='hanmj97.github.io' && path.startsWith('/Black-jack-React')) return 'blackjack_demo';
       if (host==='blog.naver.com' && path.includes('/hanmj97')) return 'tech_blog';
       return 'other_external';
     } catch (_) {return 'other_internal';}
