@@ -103,34 +103,59 @@ const filters=document.querySelectorAll('.filter');const projects=document.query
     '1giuo45NZbRBVW2oVXLtYZ396r_KoQRz_':'portfolio_pdf',
     '1Wxlui-kZ2fSewwNRSyikrvZ_xIX_03Ss':'career_pdf',
   };
+  // Classify actions using fixed keys; never submit clicked URLs or personal text.
   function classifyLink(anchor) {
     const raw=anchor.getAttribute('href');
-    if (raw === '#projects') return 'project_section';
-    if (!raw) return null;
+    if (!raw) return 'other_internal';
+    const nav={'#about':'nav_about','#experience':'nav_experience','#projects':'project_section',
+      '#stack':'nav_stack','#documents':'nav_documents','#contact':'nav_contact'};
+    if (raw==='#home') return anchor.closest('footer')?'footer_back_to_top':'nav_brand';
+    if (Object.prototype.hasOwnProperty.call(nav,raw)) return nav[raw];
     try {
-      const u = new URL(raw, location.href);
-      if (u.protocol === 'mailto:') return 'email_contact';
-      const h=u.hostname.toLowerCase();
-      if (h.endsWith('.notion.site')) return 'notion_resume';
-      if (h === 'drive.google.com') {
+      const u=new URL(raw,location.href);
+      if (u.protocol==='mailto:') return 'email_contact';
+      if (u.protocol!=='http:' && u.protocol!=='https:') return 'other_internal';
+      const host=u.hostname.toLowerCase(),path=u.pathname.replace(/\/$/,'');
+      if (u.origin===location.origin) return 'other_internal';
+      if (host.endsWith('.notion.site')) return 'notion_resume';
+      if (host==='drive.google.com') {
         const id=u.pathname.split('/d/')[1]?.split('/')[0];
-        return DRIVE_DOCS[id] || null;
+        return DRIVE_DOCS[id]||'other_external';
       }
-      if (h === 'github.com') {
-        if (u.pathname.startsWith('/hanmj97/DataOpsPipeline')) return 'dataops_github';
-        if (u.pathname.startsWith('/hanmj97/Black-jack-React')) return 'blackjack_github';
-        if (u.pathname.replace(/\/$/,'') === '/hanmj97') return 'github_profile';
+      if (host==='github.com') {
+        if (path==='/hanmj97') return 'github_profile';
+        if (path==='/hanmj97/DBPulse') return 'dbpulse_github';
+        if (path.startsWith('/hanmj97/DBPulse/'))
+          return path.includes('/releases/')?'dbpulse_release':'dbpulse_github';
+        if (path==='/hanmj97/SignalBridge') return 'signalbridge_github';
+        if (path.startsWith('/hanmj97/SignalBridge/')) {
+          if (path.includes('/releases/')) return 'signalbridge_release';
+          if (path.includes('/blob/') || path.includes('/tree/')) return 'signalbridge_architecture';
+          return 'signalbridge_github';
+        }
+        if (path.startsWith('/hanmj97/DataOpsPipeline')) return 'dataops_github';
+        if (path.startsWith('/hanmj97/Black-jack-React')) return 'blackjack_github';
       }
-      if (h === 'hanmj97.github.io' && u.pathname.startsWith('/Black-jack-React')) return 'blackjack_demo';
-      if (h === 'blog.naver.com' && u.pathname.includes('/hanmj97')) return 'tech_blog';
-    } catch (_) {}
-    return null;
+      if (host==='hanmj97.github.io' && path.startsWith('/Black-jack-React')) return 'blackjack_demo';
+      if (host==='blog.naver.com' && path.includes('/hanmj97')) return 'tech_blog';
+      return 'other_external';
+    } catch (_) {return 'other_internal';}
   }
-  document.addEventListener('click', event => {
+  function classifyButton(button) {
+    if (!button) return null;
+    if (button.id==='menu') return 'mobile_menu_toggle';
+    if (button.matches('.filter')) {
+      const keys={all:'filter_all',data:'filter_data',development:'filter_development'};
+      return keys[button.dataset.filter]||'other_button';
+    }
+    return 'other_button';
+  }
+  // One delegated listener covers all current and future anchors/native buttons.
+  document.addEventListener('click',event=>{
     const anchor=event.target?.closest?.('a[href]');
-    if (!anchor) return;
-    const target=classifyLink(anchor);
+    const button=anchor?null:event.target?.closest?.('button');
+    const target=anchor?classifyLink(anchor):classifyButton(button);
     if (!target) return;
-    post('/event',{eventId:crypto.randomUUID(),target}).catch(() => {});
-  }, {capture:true});
+    post('/event',{eventId:crypto.randomUUID(),target}).catch(()=>{});
+  },{capture:true});
 })();

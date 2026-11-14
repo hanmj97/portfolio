@@ -96,3 +96,14 @@ GitHub Pages의 \`script.js\`를 V4 Worker API에 연동했습니다.
 - **운영 확인**: Discord 채널 메시지와 모바일 푸시 정상 수신. PC에서 Discord가 실행 중이면 모바일 푸시가 억제될 수 있음
 
 V4.1의 전체 Worker 소스를 이제 이 공개 GitHub 저장소에서 관리합니다. 실제 운영 배포는 Cloudflare Workers 관리 화면에서 이루어지며 GitHub 코드 업데이트만으로 자동 배포되지는 않습니다.
+
+## V4.2 — 전체 링크·버튼 클릭 기록 (2026-11-14)
+
+- 현재 홈페이지의 링크 32개 및 버튼 4개를 유형별 고정 키로 분류하여 D1 `portfolio_events`에 저장합니다.
+- 과거 V4 분류 키를 유지하므로 기존 Notion/PDF/일부 GitHub 집계는 이어집니다. 동일 목적지의 여러 버튼은 하나의 키로 합산될 수 있습니다.
+- DBPulse·SignalBridge GitHub/릴리스/아키텍처, 내부 메뉴, 프로젝트 필터, 모바일 메뉴, 연락처 등을 추가했습니다.
+- 관리자는 **전체 항목(클릭 0회 포함)**과 분류 필터, 누적 클릭 수를 조회할 수 있습니다. 기존 상위 10개 제한을 없애고 CSV에 대상 키를 넣었습니다.
+- 링크 URL 원문이나 방문자 신원은 별도로 저장하지 않습니다. 클릭 수는 문서 열람 또는 다운로드 완료 수가 아닙니다.
+- **필수:** GitHub Pages는 정적 파일만 배포합니다. Cloudflare Workers & Pages의 `portfolio-counter` Worker에서 [worker.js](./worker.js)를 직접 배포해야 새 대상이 승인·저장됩니다. D1 데이터, `DB` 바인딩, `ADMIN_TOKEN`과 `DISCORD_WEBHOOK_URL` Secret은 그대로 유지하고 D1 마이그레이션은 재실행하지 마세요.
+- 배포 후 `/health`, `/admin`을 확인하고 실제 포트폴리오에서 DBPulse Release, SignalBridge Architecture, 필터 버튼 등을 한 번씩 클릭해 증가 여부를 확인하세요. `analytics_optout=1` 브라우저는 이벤트를 보내지 않습니다. 누락된 과거 클릭은 복구되지 않습니다.
+

@@ -109,6 +109,8 @@ const ADMIN_HTML = `<!doctype html>
     .section-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 15px}
     .v4-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
     .v4-wide{grid-column:1 / -1}
+    .click-summary{max-height:400px;overflow-y:auto;padding-right:6px;margin-top:12px}
+    #clickTotal{font-size:12px;margin-top:3px;font-variant-numeric:tabular-nums}
     .compact-select{background:#fff;border:1px solid #d8e2e9;border-radius:9px;padding:8px 10px;color:#20313e;font-size:12px}
     .daily-chart{height:180px;display:flex;align-items:flex-end;gap:3px;border-bottom:1px solid #d9e2e9;background:repeating-linear-gradient(to top,transparent 0,transparent calc(25% - 1px),#eef2f5 calc(25% - 1px),#eef2f5 25%);margin:6px 0 12px}
     .daily-bar{min-width:2px;flex:1;border-radius:3px 3px 0 0;background:linear-gradient(0deg,#177d6b,#99d8c6)}
@@ -204,9 +206,22 @@ const ADMIN_HTML = `<!doctype html>
         <div class="daily-chart" id="dailyChart" role="img" aria-label="일별 방문 횟수 그래프"></div>
         <div class="chart-foot"><span id="trendStart">—</span><span>막대에 마우스를 올려 날짜별 방문 확인</span><span id="trendEnd">—</span></div>
       </section>
-      <section class="panel" aria-label="문서 및 프로젝트 클릭 통계">
-        <h2>문서·프로젝트 링크 클릭</h2><div class="hint">포트폴리오 내 외부 링크 클릭 수 · V4 적용 이후</div>
-        <div id="clickStats" class="summary-list"></div>
+      <section class="panel v4-wide" aria-label="전체 버튼 및 링크 클릭 통계">
+        <div class="section-top">
+          <div><h2>버튼·링크 클릭 현황</h2><div class="hint">문서·프로젝트·메뉴·필터·연락처 포함 · D1 수집 이후 누적</div></div>
+          <label class="geo-select" for="clickGroup">항목 분류
+            <select id="clickGroup" class="compact-select">
+              <option value="all">전체</option><option value="document">문서</option>
+              <option value="project">프로젝트·외부 링크</option>
+              <option value="navigation">페이지 이동</option><option value="filter">프로젝트 필터</option>
+              <option value="contact">연락처</option><option value="ui">UI 버튼</option>
+              <option value="other">기타</option>
+            </select>
+          </label>
+        </div>
+        <div id="clickTotal" class="sub" aria-live="polite">클릭 집계를 불러오고 있습니다.</div>
+        <div id="clickStats" class="summary-list click-summary"></div>
+        <div class="admin-info">클릭은 링크를 누른 횟수이며 외부 문서 열람·다운로드 완료를 의미하지 않습니다. 새 분류는 배포 이후부터 집계됩니다.</div>
       </section>
       <section class="panel" aria-label="유입 경로 분석">
         <h2>유입 경로</h2><div class="hint">브라우저가 전달한 유입 정보 기준 · 미확인 접속은 Direct/Unknown</div>
@@ -243,6 +258,7 @@ const ADMIN_HTML = `<!doctype html>
 <script>
   // Password is held only in this page's memory, not localStorage or URL.
   let adminToken = '';
+  let clickRows = [];
   let refreshTimer = null;
   let inFlight = false;
   let geoMap = null;
@@ -424,7 +440,8 @@ const ADMIN_HTML = `<!doctype html>
       drawChart(Array.isArray(data.hourly) ? data.hourly : []);
       drawRecent(Array.isArray(data.recent) ? data.recent : []);
       drawDaily(data.daily);
-      renderSummary('clickStats',data.clicks);
+      clickRows = Array.isArray(data.clicks) ? data.clicks : [];
+      drawClickList();
       renderSummary('sourceStats',data.sources);
       renderSummary('deviceStats',data.devices);
       renderSummary('browserStats',data.browsers);
@@ -448,13 +465,23 @@ const ADMIN_HTML = `<!doctype html>
     } finally { inFlight = false; }
   }
 
-  function renderSummary(id, rows, labelKey = 'label') {
+  function drawClickList() {
+    const group=$('clickGroup').value;
+    const visible=clickRows.filter(item=>group==='all'||item.group===group);
+    const total=visible.reduce((sum,item)=>sum+(Number(item.count)||0),0);
+    const active=visible.filter(item=>Number(item.count)>0).length;
+    $('clickTotal').textContent='기록된 클릭 '+formatCount(total)+'회 · 클릭 발생 '+
+      formatCount(active)+'/'+formatCount(visible.length)+'개 항목 (0회 항목 포함)';
+    renderSummary('clickStats',visible,'label',visible.length);
+  }
+
+  function renderSummary(id, rows, labelKey = 'label', maxItems = 10) {
     const root = $(id);
     root.replaceChildren();
     const data = Array.isArray(rows) ? rows : [];
     if (!data.length) {const x=document.createElement('div');x.className='empty-small';x.textContent='집계된 데이터가 없습니다.';root.appendChild(x);return;}
     const max=Math.max(1,...data.map(x=>Number(x.count)||0));
-    data.slice(0,10).forEach(item=>{
+    data.slice(0,maxItems).forEach(item=>{
       const row=document.createElement('div');row.className='summary-row';
       const head=document.createElement('div');head.className='summary-head';
       const name=document.createElement('span');name.textContent=String(item[labelKey]||'미확인');name.title=name.textContent;
@@ -531,6 +558,7 @@ const ADMIN_HTML = `<!doctype html>
     } finally {button.disabled=false;}
   });
     $('downloadCsv').addEventListener('click',downloadCsv);
+  $('clickGroup').addEventListener('change',drawClickList);
   $('trendDays').addEventListener('change',()=>refresh());
   $('trendGroup').addEventListener('change',()=>refresh());
   $('geoPeriod').addEventListener('change', () => { geoLastBoundsSignature = ''; refresh(); });
@@ -581,9 +609,18 @@ const GEO_PERIODS = {
 const SOURCE_TYPES = new Set(['direct','job','search','social','referral','unknown']);
 const VISITOR_TYPES = new Set(['new','returning','unknown']);
 const TRACKED_TARGETS = {
-  notion_resume: 'document', resume_pdf: 'document', portfolio_pdf: 'document', career_pdf: 'document',
-  dataops_github: 'project', blackjack_github: 'project', blackjack_demo: 'project',
-  github_profile: 'project', tech_blog: 'project', email_contact: 'contact', project_section: 'navigation',
+  // Preserve old keys and historical totals.
+  notion_resume:'document', resume_pdf:'document', portfolio_pdf:'document', career_pdf:'document',
+  dataops_github:'project', blackjack_github:'project', blackjack_demo:'project',
+  github_profile:'project', tech_blog:'project', email_contact:'contact', project_section:'navigation',
+  dbpulse_github:'project', dbpulse_release:'project', signalbridge_github:'project',
+  signalbridge_architecture:'project', signalbridge_release:'project',
+  nav_brand:'navigation', nav_about:'navigation', nav_experience:'navigation',
+  nav_stack:'navigation', nav_documents:'navigation', nav_contact:'navigation',
+  footer_back_to_top:'navigation',
+  filter_all:'filter', filter_data:'filter', filter_development:'filter',
+  mobile_menu_toggle:'ui',
+  other_external:'other', other_internal:'other', other_button:'other',
 };
 function cleanSource(host, type) {
   const source_type = SOURCE_TYPES.has(type) ? type : 'unknown';
@@ -621,9 +658,21 @@ function isAuthorized(request,env) {
 function analyticsCors(request) {
   return request.headers.get('Origin') === PORTFOLIO_ORIGIN;
 }
-const LABELS = { notion_resume:'Notion 이력서', resume_pdf:'이력서 PDF', portfolio_pdf:'포트폴리오 PDF', career_pdf:'경력기술서 PDF',
-  dataops_github:'DataOps GitHub', blackjack_github:'Blackjack GitHub', blackjack_demo:'Blackjack 데모', github_profile:'GitHub 프로필',
-  tech_blog:'기술 블로그', email_contact:'이메일', project_section:'프로젝트 섹션' };
+const LABELS = {
+  notion_resume:'Notion 이력서', resume_pdf:'이력서 PDF', portfolio_pdf:'포트폴리오 PDF', career_pdf:'경력기술서 PDF',
+  dataops_github:'DataOps GitHub', blackjack_github:'Blackjack GitHub', blackjack_demo:'Blackjack 데모',
+  github_profile:'GitHub 프로필', tech_blog:'기술 블로그', email_contact:'이메일 연락',
+  project_section:'프로젝트 섹션으로 이동',
+  dbpulse_github:'DBPulse GitHub', dbpulse_release:'DBPulse 릴리스',
+  signalbridge_github:'SignalBridge GitHub', signalbridge_architecture:'SignalBridge 아키텍처',
+  signalbridge_release:'SignalBridge 릴리스',
+  nav_brand:'상단 로고 / 홈', nav_about:'소개 메뉴', nav_experience:'경력 메뉴',
+  nav_stack:'기술 메뉴', nav_documents:'문서 메뉴', nav_contact:'연락처 메뉴',
+  footer_back_to_top:'맨 위로 이동',
+  filter_all:'프로젝트 필터 · 전체', filter_data:'프로젝트 필터 · 데이터',
+  filter_development:'프로젝트 필터 · 개발', mobile_menu_toggle:'모바일 메뉴 열기/닫기',
+  other_external:'기타 외부 링크', other_internal:'기타 내부 링크', other_button:'기타 버튼',
+};
 
 // Discord notifications use a server-side Cloudflare Secret only.
 // Do not include webhook URLs in GitHub Pages code, exported statistics, or public logs.
@@ -764,7 +813,7 @@ export default {
                GROUP BY country, region, city ORDER BY visits DESC LIMIT 50`).all(),
           env.DB.prepare(`SELECT COUNT(*) AS count FROM portfolio_visits ${where}`).first(),
           env.DB.prepare('SELECT visit_date AS date,COUNT(*) AS visits FROM portfolio_visits WHERE visit_date >= ? GROUP BY visit_date ORDER BY visit_date').bind(dateKstOffset(-89)).all(),
-          env.DB.prepare('SELECT target_key, COUNT(*) AS count FROM portfolio_events GROUP BY target_key ORDER BY count DESC LIMIT 10').all(),
+          env.DB.prepare('SELECT target_key, COUNT(*) AS count FROM portfolio_events GROUP BY target_key ORDER BY count DESC').all(),
           env.DB.prepare('SELECT source_type,source_host,COUNT(*) AS count FROM portfolio_visits WHERE source_type IS NOT NULL GROUP BY source_type,source_host ORDER BY count DESC LIMIT 10').all(),
           env.DB.prepare('SELECT device_type,COUNT(*) AS count FROM portfolio_visits WHERE device_type IS NOT NULL GROUP BY device_type ORDER BY count DESC').all(),
           env.DB.prepare('SELECT browser_name,COUNT(*) AS count FROM portfolio_visits WHERE browser_name IS NOT NULL GROUP BY browser_name ORDER BY count DESC').all(),
@@ -802,7 +851,11 @@ export default {
         const dailyMap=new Map((dayRows.results||[]).map(x=>[x.date,Number(x.visits)||0]));
         const daily=[];
         for(let i=trendDays-1;i>=0;i--){const d=dateKstOffset(-i);daily.push({date:d,visits:dailyMap.get(d)||0});}
-        const clicks=(clickRows.results||[]).map(x=>({label:LABELS[x.target_key]||x.target_key,count:Number(x.count)||0}));
+        const clickCounts=new Map((clickRows.results||[]).map(x=>[x.target_key,Number(x.count)||0]));
+        const allKeys=new Set([...Object.keys(TRACKED_TARGETS),...clickCounts.keys()]);
+        const clicks=Array.from(allKeys,key=>({
+          key,group:TRACKED_TARGETS[key]||'other',label:LABELS[key]||key,count:clickCounts.get(key)||0,
+        })).sort((a,b)=>b.count-a.count||a.label.localeCompare(b.label,'ko'));
         const sources=(sourceRows.results||[]).map(x=>({label:(x.source_type||'unknown') + (x.source_host?' · '+x.source_host:''),count:Number(x.count)||0}));
         const devices=(deviceRows.results||[]).map(x=>({label:x.device_type,count:Number(x.count)||0}));
         const browsers=(browserRows.results||[]).map(x=>({label:x.browser_name,count:Number(x.count)||0}));
@@ -875,9 +928,9 @@ export default {
           const r=await env.DB.prepare('SELECT device_type,browser_name,COUNT(*) AS count FROM portfolio_visits WHERE visit_date>=? GROUP BY device_type,browser_name ORDER BY count DESC').bind(cutoff).all();
           rows=(r.results||[]).map(x=>[x.device_type||'미기록',x.browser_name||'미기록',x.count]);
         } else {
-          headers=['클릭유형','대상','클릭횟수'];
+          headers=['클릭유형','대상키','표시명','클릭횟수'];
           const r=await env.DB.prepare('SELECT target_group,target_key,COUNT(*) AS count FROM portfolio_events WHERE event_date>=? GROUP BY target_group,target_key ORDER BY count DESC').bind(cutoff).all();
-          rows=(r.results||[]).map(x=>[x.target_group,LABELS[x.target_key]||x.target_key,x.count]);
+          rows=(r.results||[]).map(x=>[x.target_group,x.target_key,LABELS[x.target_key]||x.target_key,x.count]);
         }
         return csvResponse(headers,rows,'portfolio-'+kind+'.csv');
       }catch {return json({error:'Unable to export CSV'},500);}
